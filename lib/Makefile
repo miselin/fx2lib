@@ -26,10 +26,10 @@ $(LIBS): $(FX2_OBJS)
 	sdcclib fx2.lib $?
 
 usbav.rel: usbav.a51
-	asx8051 -logs usbav.a51
+	sdas8051 -logs usbav.a51
 
 int4av.rel: int4av.a51
-	asx8051 -logs int4av.a51
+	sdas8051 -logs int4av.a51
 
 %.rel: %.c
 	$(SDCC) $(INCLUDES) -c $< -o $@
