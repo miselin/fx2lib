@@ -192,6 +192,9 @@ BOOL handle_set_configuration(BYTE cfg) {
  return cfg==1 ? TRUE : FALSE; // we only handle cfg 1
 }
 
+BOOL handle_get_descriptor()
+{
+}
 
 // copied usb jt routines from usbjt.h
 void sudav_isr() interrupt SUDAV_ISR {

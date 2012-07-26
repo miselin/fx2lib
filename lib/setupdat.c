@@ -34,6 +34,7 @@
 extern BOOL handle_vendorcommand(BYTE cmd);
 extern BOOL handle_set_configuration(BYTE cfg);
 extern BOOL handle_get_interface(BYTE ifc, BYTE* alt_ifc);
+extern BOOL handle_get_descriptor(BYTE desc);
 extern BOOL handle_set_interface(BYTE ifc,BYTE alt_ifc);
 extern BYTE handle_get_configuration();
 extern BOOL handle_set_configuration(BYTE cfg);
@@ -54,7 +55,7 @@ BOOL handle_set_feature();
   // 0x04 is reserved
 //  SET_ADDRESS=0x05, // this is handled by EZ-USB core unless RENUM=0
 //  GET_DESCRIPTOR,
-void handle_get_descriptor();
+void handle_get_descriptor_default();
 //  SET_DESCRIPTOR,
 //  GET_CONFIGURATION, // handled by callback
 //  SET_CONFIGURATION, // handled by callback
@@ -89,7 +90,7 @@ void handle_setupdata() {
             }
             break;
         case GET_DESCRIPTOR:
-            handle_get_descriptor();
+            handle_get_descriptor_default();
             break;
         case GET_CONFIGURATION:            
             EP0BUF[0] = handle_get_configuration();
@@ -300,9 +301,9 @@ void handle_hispeed(BOOL highspeed) {
  *  String
  *  Other-Speed
  **/
-void handle_get_descriptor() {
+void handle_get_descriptor_default() {
     //printf ( "Get Descriptor\n" );
-    
+
     switch ( SETUPDAT[3] ) {
         case DSCR_DEVICE_TYPE:
             printf ( "Get Device Config\n" );
@@ -359,8 +360,11 @@ void handle_get_descriptor() {
             SUDPTRL = LSB(pOtherConfig);
             break;
         default:
-            printf ( "Unhandled Get Descriptor: %02x\n", SETUPDAT[3]);
-            STALLEP0();
+            if (!handle_get_descriptor(SETUPDAT[3])) {
+                printf ( "Unhandled Get Descriptor: %02x\n", SETUPDAT[3]);
+                STALLEP0();
+            }
+            break;
     }
     
 }

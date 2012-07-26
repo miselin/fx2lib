@@ -74,7 +74,10 @@ void main() {
 
 }
 
-
+BOOL handle_get_descriptor()
+{
+	return FALSE;
+}
 #define VC_EEPROM 0xb1
         
 BOOL handle_vendorcommand(BYTE cmd) {
