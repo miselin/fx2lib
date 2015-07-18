@@ -3,6 +3,11 @@
 #define CDC_H
 
 #include <fx2types.h>
+#include <fx2macros.h>
+#include <fx2regs.h>
+#include <delay.h>
+
+#define SYNCDELAY SYNCDELAY4
 
 #include "cdc-config.h"
 
