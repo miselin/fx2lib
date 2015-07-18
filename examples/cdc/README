@@ -1,0 +1,12 @@
+This example is for appearing as a CDC-AMC "serial comm port".
+
+ * (TBD) loopback - Echo everything back to you (useful for testing).
+
+ * to-uart - Sends data in and out using the hardware UART.
+
+ * (TBD) to-pin - Sends data in and out using bit banging software UART.
+
+ * (TBD) to-fifo - Sends data in and out using the FIFO system.
+   This is the highest performing mode, getting up to 30mega*bytes* per second.
+
+TBD: To be done.
