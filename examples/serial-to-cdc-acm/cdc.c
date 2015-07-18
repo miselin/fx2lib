@@ -7,6 +7,8 @@
 
 #define SYNCDELAY SYNCDELAY4
 
+volatile WORD cdc_queued_bytes = 0;
+
 struct usb_cdc_line_coding cdc_current_line_coding = {
   .bDTERate0 = LSB(2400),
   .bDTERate1 = MSB(2400),
@@ -24,23 +26,6 @@ void cdc_receive_poll() {
 		EP2BCL = 0x80; // Mark us ready to receive again.
 	}
 	// FIXME: Send the interrupt thingy
-}
-
-BOOL cdc_can_send() {
-	return !(EP2468STAT & bmEP6FULL); 
-}
-
-volatile WORD cdc_queued_bytes = 0;
-void cdc_queue_data(BYTE data) {
-	EP6FIFOBUF[cdc_queued_bytes++] = data;
-}
-
-void cdc_send_queued_data() {
-	EP6BCH=MSB(cdc_queued_bytes);
-	SYNCDELAY;
-	EP6BCL=LSB(cdc_queued_bytes);
-	SYNCDELAY;
-	cdc_queued_bytes = 0;
 }
 
 BOOL cdc_handle_command(BYTE cmd) {

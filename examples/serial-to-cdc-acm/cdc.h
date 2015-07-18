@@ -18,11 +18,24 @@ BOOL cdc_handle_command(BYTE cmd);
 void cdc_receive_poll();
 
 // You are able to send data.
-BOOL cdc_can_send();
+//BOOL cdc_can_send();
+#define cdc_can_send() \
+	!(EP2468STAT & bmEP6FULL)
+
+extern volatile WORD cdc_queued_bytes;
 // Queue a byte in the output CDC data queue.
-void cdc_queue_data(BYTE data);
+//void cdc_queue_data(BYTE data);
+#define cdc_queue_data(data) \
+	EP6FIFOBUF[cdc_queued_bytes++] = data;
 // Send all queue bytes from the output CDC data queue to the host.
-void cdc_send_queued_data();
+//void cdc_send_queued_data();
+#define cdc_send_queued_data() \
+	EP6BCH=MSB(cdc_queued_bytes); \
+	SYNCDELAY; \
+	EP6BCL=LSB(cdc_queued_bytes); \
+	SYNCDELAY; \
+	cdc_queued_bytes = 0;
+
 
 /* ------------------------------------------------------------------------ */
 
@@ -128,5 +141,6 @@ struct usb_cdc_line_coding {
 //         __le32  DLBitRRate;     /* contains the downlink bit rate (IN pipe) */
 //         __le32  ULBitRate;      /* contains the uplink bit rate (OUT pipe) */
 // };
+
 
 #endif // CDC_H
