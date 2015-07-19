@@ -31,7 +31,80 @@
 #define REARMVAL 0x80
 #define REARM() EP2BCL=REARMVAL
 
+// -----------------------------------------------------------------------
 
+#define SET_LINE_CODING		(0x20)
+#define GET_LINE_CODING		(0x21)
+#define SET_CONTROL_STATE	(0x22)
+
+BYTE __xdata LineCode[7] = {0x60,0x09,0x00,0x00,0x00,0x00,0x08};
+
+void Serial0Init () {
+	if ((LineCode[0] == 0x60) && (LineCode[1] == 0x09 )) {		// 2400
+ 		sio0_init(2400);
+	} else if ((LineCode[0] == 0xC0) && (LineCode[1] == 0x12 )) {	 // 4800
+ 		sio0_init(4800);
+	} else if ((LineCode[0] == 0x80) && (LineCode[1] == 0x25 )) {	 // 9600
+ 		sio0_init(9600);
+	} else if ((LineCode[0] == 0x00) && (LineCode[1] == 0x4B )) {	// 19200
+ 		sio0_init(19200);
+	} else if ((LineCode[0] == 0x80) && (LineCode[1] == 0x70 )) {	// 28800
+ 		sio0_init(28800);
+	} else if ((LineCode[0] == 0x00) && (LineCode[1] == 0x96 )) {	// 38400
+ 		sio0_init(38400);
+	} else if ((LineCode[0] == 0x00) && (LineCode[1] == 0xE1 )) {	// 57600
+ 		sio0_init(57600);
+	} else { //if ((LineCode[0] == 0x21) && (LineCode[1] == 0x20 )) {	// 115200 (LineCode[0] == 0x00) && (LineCode[1] == 0xC2 ))
+ 		sio0_init(115200);
+	}
+}
+
+BOOL handleCDCCommand(BYTE cmd) {
+    int i;
+
+    switch(cmd) {
+    case SET_LINE_CODING:
+        
+        EUSB = 0 ;
+        SUDPTRCTL = 0x01;
+        EP0BCL = 0x00;
+        SUDPTRCTL = 0x00;
+        EUSB = 1;
+        
+        while (EP0BCL != 7);
+            SYNCDELAY;
+
+        for (i=0;i<7;i++)
+            LineCode[i] = EP0BUF[i];
+
+	Serial0Init();
+        return TRUE;
+
+    case GET_LINE_CODING:
+        
+        SUDPTRCTL = 0x01;
+        
+        for (i=0;i<7;i++)
+            EP0BUF[i] = LineCode[i];
+
+        EP0BCH = 0x00;
+        SYNCDELAY;
+        EP0BCL = 7;
+        SYNCDELAY;
+        while (EP0CS & 0x02);
+        SUDPTRCTL = 0x00;
+        
+        return TRUE;
+
+    case SET_CONTROL_STATE:
+        return TRUE;
+
+    default:
+        return FALSE;
+    }
+}
+
+// -----------------------------------------------------------------------
 
 volatile WORD bytes;
 volatile __bit gotbuf;
@@ -170,6 +243,9 @@ BOOL handle_get_descriptor() {
 #define VC_EPSTAT 0xB1
 
 BOOL handle_vendorcommand(BYTE cmd) {
+
+	if (handleCDCCommand(cmd))
+            return TRUE;
 
  switch ( cmd ) {
  
