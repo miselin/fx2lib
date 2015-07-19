@@ -37,26 +37,15 @@
 #define GET_LINE_CODING		(0x21)
 #define SET_CONTROL_STATE	(0x22)
 
-BYTE __xdata LineCode[7] = {0x60,0x09,0x00,0x00,0x00,0x00,0x08};
+unsigned char __xdata LineCode[7] = {0x60,0x09,0x00,0x00,0x00,0x00,0x08};
 
 void Serial0Init () {
-	if ((LineCode[0] == 0x60) && (LineCode[1] == 0x09 )) {		// 2400
- 		sio0_init(2400);
-	} else if ((LineCode[0] == 0xC0) && (LineCode[1] == 0x12 )) {	 // 4800
- 		sio0_init(4800);
-	} else if ((LineCode[0] == 0x80) && (LineCode[1] == 0x25 )) {	 // 9600
- 		sio0_init(9600);
-	} else if ((LineCode[0] == 0x00) && (LineCode[1] == 0x4B )) {	// 19200
- 		sio0_init(19200);
-	} else if ((LineCode[0] == 0x80) && (LineCode[1] == 0x70 )) {	// 28800
- 		sio0_init(28800);
-	} else if ((LineCode[0] == 0x00) && (LineCode[1] == 0x96 )) {	// 38400
- 		sio0_init(38400);
-	} else if ((LineCode[0] == 0x00) && (LineCode[1] == 0xE1 )) {	// 57600
- 		sio0_init(57600);
-	} else { //if ((LineCode[0] == 0x21) && (LineCode[1] == 0x20 )) {	// 115200 (LineCode[0] == 0x00) && (LineCode[1] == 0xC2 ))
- 		sio0_init(115200);
-	}
+        DWORD baud_rate = 0;
+        baud_rate = MAKEDWORD(MAKEWORD(LineCode[3], LineCode[2]), MAKEWORD(LineCode[1], LineCode[0]));
+        if (baud_rate > 115200 || baud_rate < 2400)
+            baud_rate = 115200;
+        sio0_init(baud_rate);
+	return;
 }
 
 BOOL handleCDCCommand(BYTE cmd) {
