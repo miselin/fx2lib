@@ -76,6 +76,11 @@ serial:
  A simple terminal echo firmware.  Echos whatever you type back to the serial terminal.
 
 
+serial-to-cdc-acm:
+ An example firmware which implemented the CDC-ACM protocol and connects it to
+ the hardware UARTs found in the 100 and 128 pin versions of the FX2.
+
+
 timers:
  Demonstrates setting up timers t0, t1, and t2 to be 16 bit counters and also demonstrates
  installing interrupts to process the timer overlow.
