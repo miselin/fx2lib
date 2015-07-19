@@ -111,11 +111,18 @@ void main() {
   }
 
   if ( !(EP2468STAT & bmEP2EMPTY) ) {
+        WORD i;
+        bytes = MAKEWORD(EP2BCH,EP2BCL);
+        for (i=0;i<bytes;++i) {
+         SBUF0 = EP2FIFOBUF[i];
+         while(TI);
+        }
+	REARM();
+
+/*
  	if  ( !(EP2468STAT & bmEP6FULL) ) { // wait for at least one empty in buffer
-                 WORD i;
 //                 printf ( "Sending data to ep6 in\n");
     
-                 bytes = MAKEWORD(EP2BCH,EP2BCL);
                  
                  for (i=0;i<bytes;++i) EP6FIFOBUF[i] = d;
                  
@@ -130,8 +137,8 @@ void main() {
                  REARM(); // ep2
                  //printf ( "Re-Armed ep2\n" );
 
-         }
-   }
+         } */
+   } 
  }
 
 }
@@ -140,6 +147,12 @@ void ISR_USART0(void) __interrupt 4 __critical {
 	if (RI) {
 		RI=0;
 		d = SBUF0;
+ 	  if  ( !(EP2468STAT & bmEP6FULL) ) { // wait for at least one empty in buffer
+                 EP6FIFOBUF[0] = d;
+                 EP6BCH=MSB(1);
+                 SYNCDELAY;
+                 EP6BCL=LSB(1); 
+          } 
 	}
 	if (TI) {
 		TI=0;
