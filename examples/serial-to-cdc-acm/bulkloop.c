@@ -39,6 +39,7 @@ volatile BYTE icount;
 volatile __bit got_sud;
 DWORD lcount;
 __bit on;
+volatile char d;
 
 void main() {
 
@@ -58,8 +59,7 @@ void main() {
 
  SETCPUFREQ(CLK_48M);
  SETIF48MHZ();
- sio0_init(57600);
- 
+ sio0_init(9600);
  
  USE_USB_INTS(); 
  ENABLE_SUDAV();
@@ -91,30 +91,33 @@ void main() {
  
  // make it so we enumberate
  
+	ES0 = 1; /* enable serial interrupts */
+	PS0 = 0; /* set serial interrupts to low priority */
+
+	TI = 1; /* clear transmit interrupt */
+	RI = 0; /* clear receiver interrupt */
 
  EA=1; // global interrupt enable 
- printf ( "Done initializing stuff\n" );
 
  
  d3off();
+
  
  while(TRUE) {
  
   if ( got_sud ) {
-      printf ( "Handle setupdata\n" );
       handle_setupdata(); 
       got_sud=FALSE;
   }
 
   if ( !(EP2468STAT & bmEP2EMPTY) ) {
-       printf ( "ep2 out received data\n" );
-      if  ( !(EP2468STAT & bmEP6FULL) ) { // wait for at least one empty in buffer
+ 	if  ( !(EP2468STAT & bmEP6FULL) ) { // wait for at least one empty in buffer
                  WORD i;
-                 printf ( "Sending data to ep6 in\n");
+//                 printf ( "Sending data to ep6 in\n");
     
                  bytes = MAKEWORD(EP2BCH,EP2BCL);
                  
-                 for (i=0;i<bytes;++i) EP6FIFOBUF[i] = EP2FIFOBUF[i];
+                 for (i=0;i<bytes;++i) EP6FIFOBUF[i] = d;
                  
                  // can copy whole string w/ autoptr instead.
                  // or copy directly from one buf to another
@@ -133,6 +136,17 @@ void main() {
 
 }
 
+void ISR_USART0(void) __interrupt 4 __critical {
+	if (RI) {
+		RI=0;
+		d = SBUF0;
+	}
+	if (TI) {
+		TI=0;
+//		transmit();
+	}
+}
+
 // copied routines from setupdat.h
 
 BOOL handle_get_descriptor() {
@@ -149,7 +163,7 @@ BOOL handle_vendorcommand(BYTE cmd) {
      case VC_EPSTAT:
         {         
          __xdata BYTE* pep= ep_addr(SETUPDAT[2]);
-         printf ( "ep %02x\n" , *pep );
+         //printf ( "ep %02x\n" , *pep );
          if (pep) {
           EP0BUF[0] = *pep;
           EP0BCH=0;
@@ -158,18 +172,18 @@ BOOL handle_vendorcommand(BYTE cmd) {
          } 
         }
      default:
-          printf ( "Need to implement vendor command: %02x\n", cmd );
+          //printf ( "Need to implement vendor command: %02x\n", cmd );
  }
  return FALSE;
 }
 
 // this firmware only supports 0,0
 BOOL handle_get_interface(BYTE ifc, BYTE* alt_ifc) { 
- printf ( "Get Interface\n" );
+ //printf ( "Get Interface\n" );
  if (ifc==0) {*alt_ifc=0; return TRUE;} else { return FALSE;}
 }
 BOOL handle_set_interface(BYTE ifc, BYTE alt_ifc) { 
- printf ( "Set interface %d to alt: %d\n" , ifc, alt_ifc );
+ //printf ( "Set interface %d to alt: %d\n" , ifc, alt_ifc );
  
  if (ifc==0&&alt_ifc==0) {
     // SEE TRM 2.3.7
