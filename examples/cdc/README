@@ -9,4 +9,7 @@ This example is for appearing as a CDC-AMC "serial comm port".
  * (TBD) to-fifo - Sends data in and out using the FIFO system.
    This is the highest performing mode, getting up to 30mega*bytes* per second.
 
+This current implementation doesn't correctly send the periodic INT transfers
+with the line state information. This should be added to endpoint 1.
+
 TBD: To be done.
