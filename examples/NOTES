@@ -32,6 +32,7 @@ fx2:
  
  There is also an fx2load script for doing the same thing with the command line.
 
+
 eeprom:
  Simple firmware for reading and writing information from the eeprom.  The client.py
  file contains a function to read an existing prom image.
@@ -39,6 +40,7 @@ eeprom:
 
 lights:
  A really simple program that cycles the lights on the CY3864 development board.
+
 
 bulkloop:
  Demonstrations:
@@ -48,8 +50,10 @@ bulkloop:
   * Usb jump table.
   * serial IO
 
+
 i2c:
  A port of the Cypress i2c example.
+
 
 reset:
  Shows writing to the eeprom on the dev board.  The included iic data is the default data
@@ -60,6 +64,12 @@ reset:
 
 serial:
  A simple terminal echo firmware.  Echos whatever you type back to the serial terminal.
+
+
+serial-to-cdc-acm:
+ An example firmware which implemented the CDC-ACM protocol and connects it to
+ the hardware UARTs found in the 100 and 128 pin versions of the FX2.
+
 
 timers:
  Demonstrates setting up timers t0, t1, and t2 to be 16 bit counters and also demonstrates
