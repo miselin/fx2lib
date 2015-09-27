@@ -25,6 +25,7 @@
 #include <lights.h>
 #include <setupdat.h>
 #include <eputils.h>
+#include <i2c.h>
 
 #include "cdc.h"
 
@@ -77,7 +78,24 @@ DWORD lcount;
 __bit on;
 volatile char d;
 
+char hex(BYTE value) {
+	if (value > 0x0f) {
+		return '?';
+	} else if (value > 0x09) {
+		return 'a'+(value-0x0a);
+	} else {
+		return '0'+value;
+	}
+}
+
+extern __xdata char dev_serial[];
+void patch_serial(BYTE index, BYTE value) {
+	dev_serial[index*4] = hex(value >> 4);
+	dev_serial[index*4+2] = hex(value & 0xf);
+}
+
 void main() {
+	BYTE tempbyte = 0;
 	REVCTL=0; // not using advanced endpoint controls
 
 	on=0;
@@ -98,6 +116,26 @@ void main() {
 	ENABLE_SOF();
 	ENABLE_HISPEED();
 	ENABLE_USBRESET();
+
+	dev_serial[0] = 'f';
+	//pSerial[2] = ((WORD)'e') << 8;
+
+        eeprom_read(0x51, 0xf8, 1, &tempbyte);
+	patch_serial(0, tempbyte);
+        eeprom_read(0x51, 0xf8+1, 1, &tempbyte);
+	patch_serial(1, tempbyte);
+        eeprom_read(0x51, 0xf8+2, 1, &tempbyte);
+	patch_serial(2, tempbyte);
+        eeprom_read(0x51, 0xf8+3, 1, &tempbyte);
+	patch_serial(3, tempbyte);
+        eeprom_read(0x51, 0xf8+4, 1, &tempbyte);
+	patch_serial(4, tempbyte);
+        eeprom_read(0x51, 0xf8+5, 1, &tempbyte);
+	patch_serial(5, tempbyte);
+        eeprom_read(0x51, 0xf8+6, 1, &tempbyte);
+	patch_serial(6, tempbyte);
+        eeprom_read(0x51, 0xf8+7, 1, &tempbyte);
+	patch_serial(7, tempbyte);
  
 	// only valid endpoints are 2/6
 	EP2CFG = 0xA2; // 10100010
@@ -211,15 +249,15 @@ void sudav_isr() __interrupt SUDAV_ISR {
 	CLEAR_SUDAV();
 }
 
-__bit on5;
-__xdata WORD sofct=0;
+//__bit on5;
+//__xdata WORD sofct=0;
 void sof_isr () __interrupt SOF_ISR __using 1 {
-	++sofct;
-	if(sofct==8000) { // about 8000 sof interrupts per second at high speed
-		on5=!on5;
-		if (on5) {d5on();} else {d5off();}
-		sofct=0;
-	}
+//	++sofct;
+//	if(sofct==8000) { // about 8000 sof interrupts per second at high speed
+//		on5=!on5;
+//		if (on5) {d5on();} else {d5off();}
+//		sofct=0;
+//	}
 	CLEAR_SOF();
 }
 
