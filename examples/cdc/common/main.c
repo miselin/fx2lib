@@ -43,7 +43,24 @@ DWORD lcount;
 __bit on;
 volatile char d;
 
+char hex(BYTE value) {
+	if (value > 0x0f) {
+		return '?';
+	} else if (value > 0x09) {
+		return 'a'+(value-0x0a);
+	} else {
+		return '0'+value;
+	}
+}
+
+extern __xdata char dev_serial[];
+void patch_serial(BYTE index, BYTE value) {
+	dev_serial[index*4] = hex(value >> 4);
+	dev_serial[index*4+2] = hex(value & 0xf);
+}
+
 void main() {
+	BYTE tempbyte = 0;
 	REVCTL=0; // not using advanced endpoint controls
 
 	on=0;
@@ -64,6 +81,26 @@ void main() {
 	ENABLE_SOF();
 	ENABLE_HISPEED();
 	ENABLE_USBRESET();
+
+	dev_serial[0] = 'f';
+	//pSerial[2] = ((WORD)'e') << 8;
+
+        eeprom_read(0x51, 0xf8, 1, &tempbyte);
+	patch_serial(0, tempbyte);
+        eeprom_read(0x51, 0xf8+1, 1, &tempbyte);
+	patch_serial(1, tempbyte);
+        eeprom_read(0x51, 0xf8+2, 1, &tempbyte);
+	patch_serial(2, tempbyte);
+        eeprom_read(0x51, 0xf8+3, 1, &tempbyte);
+	patch_serial(3, tempbyte);
+        eeprom_read(0x51, 0xf8+4, 1, &tempbyte);
+	patch_serial(4, tempbyte);
+        eeprom_read(0x51, 0xf8+5, 1, &tempbyte);
+	patch_serial(5, tempbyte);
+        eeprom_read(0x51, 0xf8+6, 1, &tempbyte);
+	patch_serial(6, tempbyte);
+        eeprom_read(0x51, 0xf8+7, 1, &tempbyte);
+	patch_serial(7, tempbyte);
  
 	// only valid endpoints are 2/6
 	// Activate, OUT Direction, BULK Type, 512  bytes Size, Double buffered
