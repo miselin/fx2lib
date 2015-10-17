@@ -20,10 +20,10 @@ struct usb_cdc_line_coding cdc_current_line_coding = {
 };
 
 void cdc_receive_poll() {
-	if ( !(EP2468STAT & bmEP2EMPTY) ) {
-		WORD bytes = MAKEWORD(EP2BCH,EP2BCL);
-		cdcuser_receive_data(EP2FIFOBUF, bytes);
-		EP2BCL = 0x80; // Mark us ready to receive again.
+	if ( !(EP2468STAT & bmCDC_H2D_EP(EMPTY)) ) {
+		WORD bytes = MAKEWORD(CDC_H2D_EP(BCH),CDC_H2D_EP(BCL));
+		cdcuser_receive_data(CDC_H2D_EP(FIFOBUF), bytes);
+		CDC_H2D_EP(BCL) = 0x80; // Mark us ready to receive again.
 	}
 	// FIXME: Send the interrupt thingy
 }

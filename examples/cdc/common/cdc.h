@@ -20,22 +20,21 @@ void cdc_receive_poll();
 // You are able to send data.
 //BOOL cdc_can_send();
 #define cdc_can_send() \
-	!(EP2468STAT & bmEP6FULL)
+	!(EP2468STAT & bmCDC_D2H_EP(FULL))
 
 extern volatile WORD cdc_queued_bytes;
 // Queue a byte in the output CDC data queue.
 //void cdc_queue_data(BYTE data);
 #define cdc_queue_data(data) \
-	EP6FIFOBUF[cdc_queued_bytes++] = data;
+	CDC_D2H_EP(FIFOBUF)[cdc_queued_bytes++] = data;
 // Send all queue bytes from the output CDC data queue to the host.
 //void cdc_send_queued_data();
 #define cdc_send_queued_data() \
-	EP6BCH=MSB(cdc_queued_bytes); \
+	CDC_D2H_EP(BCH)=MSB(cdc_queued_bytes); \
 	SYNCDELAY; \
-	EP6BCL=LSB(cdc_queued_bytes); \
+	CDC_D2H_EP(BCL)=LSB(cdc_queued_bytes); \
 	SYNCDELAY; \
 	cdc_queued_bytes = 0;
-
 
 /* ------------------------------------------------------------------------ */
 
