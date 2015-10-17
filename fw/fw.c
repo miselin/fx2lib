@@ -78,6 +78,7 @@ void main() {
        handle_setupdata();
      }
 
+#ifdef SUSPEND_ENABLED
      if (dosuspend) {
         dosuspend=FALSE;
         do {
@@ -107,7 +108,7 @@ void main() {
         }
 
      }
-
+#endif
  } // end while
 
 } // end main
