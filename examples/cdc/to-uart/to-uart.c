@@ -30,8 +30,6 @@
 #include "cdc.h"
 
 #define SYNCDELAY SYNCDELAY4
-#define REARMVAL 0x80
-#define REARM() EP2BCL=REARMVAL
 
 // -----------------------------------------------------------------------
 
