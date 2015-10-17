@@ -48,21 +48,22 @@ ENDPOINT_TYPE_INT=3
 ; in code memory otherwise SUDPTRH:L don't work right
     .area	DSCR_AREA	(CODE)
 
+; DEVICE DESCRIPTOR
 _dev_dscr:
-	.db	dev_dscr_end-_dev_dscr    ; len
-	.db	DSCR_DEVICE_TYPE		  ; type
-	.dw	0x0002					  ; usb 2.0
-	.db	0x02  					  ; class (vendor specific)
-	.db	0x00					  ; subclass (vendor specific)
-	.db	0x00					  ; protocol (vendor specific)
-	.db	64						  ; packet size (ep0)
-	.dw	0xB404					  ; vendor id 
-	.dw	0x0410					  ; product id
-	.dw	0x0100					  ; version id
-	.db	1		                  ; manufacturure str idx
-	.db	2				          ; product str idx	
-	.db	3				          ; serial str idx 
-	.db	1			              ; n configurations
+	.db dev_dscr_end-_dev_dscr    ; 0 bLength 1 Descriptor size in bytes (12h)
+	.db DSCR_DEVICE_TYPE          ; 1 bDescriptorType 1 The constant DEVICE (01h)
+	.dw 0x0002                    ; 2 bcdUSB 2 USB specification release number (BCD)
+	.db 0x02                      ; 4 bDeviceClass 1 Class code
+	.db 0x00                      ; 5 bDeviceSubclass 1 Subclass code
+	.db 0x00                      ; 6 bDeviceProtocol 1 Protocol Code
+	.db 64                        ; 7 bMaxPacketSize0 1 Maximum packet size for endpoint zero
+	.dw 0xB404                    ; 8 idVendor 2 Vendor ID
+	.dw 0x0410                    ; 10 idProduct 2 Product ID
+	.dw 0x0100                    ; 12 bcdDevice 2 Device release number (BCD)
+	.db 1                         ; 14 iManufacturer 1 Index of string descriptor for the manufacturer
+	.db 2                         ; 15 iProduct 1 Index of string descriptor for the product
+	.db 3                         ; 16 iSerialNumber 1 Index of string descriptor for the serial number
+	.db 1                         ; 17 bNumConfigurations 1 Number of possible configurations
 dev_dscr_end:
 
 _dev_qual_dscr:
@@ -77,6 +78,7 @@ _dev_qual_dscr:
 	.db	0					; extra reserved byte
 dev_qualdscr_end:
 
+; CONFIGURATION DESCRIPTOR
 _highspd_dscr:
 	.db	highspd_dscr_end-_highspd_dscr      ; dscr len											;; Descriptor length
 	.db	DSCR_CONFIG_TYPE
@@ -90,90 +92,92 @@ _highspd_dscr:
 	.db	0x32                             ; max power = 100ma
 highspd_dscr_end:
 
+; Full speed CDC configuration. Max packet size is 512 bytes.
+;
 ; all the interfaces next
 ; NOTE the default TRM actually has more alt interfaces
 ; but you can add them back in if you need them.
 ; here, we just use the default alt setting 1 from the trm
   	; control endpoints
-	.db	DSCR_INTERFACE_LEN
-	.db	DSCR_INTERFACE_TYPE
-	.db	0x00				 ; index
-	.db	0x00				 ; alt setting idx
-	.db	0x01				 ; n endpoints
-	.db	0x02			 	 ; class
-	.db	0x02
-	.db	0x01
-	.db	0x00				; string index
+	.db DSCR_INTERFACE_LEN           ; Descriptor length
+	.db DSCR_INTERFACE_TYPE          ; Descriptor type
+	.db 0x00                         ; Zero-based index of this interface
+	.db 0x00                         ; Alternate setting
+	.db 0x01                         ; Number of end points
+	.db 0x02                         ; Interface class
+	.db 0x02                         ; Interface sub class
+	.db 0x01                         ; Interface protocol code class
+	.db 0x00                         ; Interface descriptor string index
 
-	; CDC header
-	.db	0x05
-	.db	0x24
-	.db	0x00
-	.db	0x10
-	.db	0x01
+	;; CDC Header Functional Descriptor
+	.db 0x05                         ; Descriptor Size in Bytes (5)
+	.db 0x24                         ; CS_Interface
+	.db 0x00                         ; Header Functional Descriptor
+	.dw 0x1001                       ; bcdCDC
 
-	; CDC ACM
-	.db	0x04
-	.db	0x24
-	.db	0x02
-	.db	0x00
+	;; CDC ACM Functional Descriptor
+	.db 0x04                         ; Descriptor Size in Bytes (5)
+	.db 0x24                         ; CS_Interface
+	.db 0x02                         ; Abstarct Control Management Functional Desc
+	.db 0x00                         ; bmCapabilities
 
-	; CDC union
-	.db     0x05
-	.db	0x24
-	.db	0x06
-	.db	0x00
-	.db	0x01
+	;; CDC Union Functional Descriptor
+	.db 0x05                         ; Descriptor Size in Bytes (5)
+	.db 0x24                         ; CS_Interface
+	.db 0x06                         ; Union Functional Descriptor
+	.db 0x00                         ; bMasterInterface
+	.db 0x01                         ; bSlaveInterface0
 
-	; CDC call managment
-	.db     0x05
-	.db	0x24
-	.db	0x01
-	.db	0x01
-	.db	0x01
+	;; CDC Call Management (CM) Functional Descriptor
+	.db 0x05                         ; Descriptor Size in Bytes (5)
+	.db 0x24                         ; CS_Interface
+	.db 0x01                         ; CM Functional Descriptor
+	.db 0x01                         ; bmCapabilities
+	.db 0x01                         ; bDataInterface
 
 ; endpoint 1 in
-	.db	DSCR_ENDPOINT_LEN
-	.db	DSCR_ENDPOINT_TYPE
-	.db	0x81				; ep1 dir=IN and address
-	.db	ENDPOINT_TYPE_INT		; type
-	.db	0x40				; max packet LSB
-	.db	0x00				; max packet size=512 bytes
-	.db	0x40				; polling interval
+	.db DSCR_ENDPOINT_LEN            ; Descriptor length
+	.db DSCR_ENDPOINT_TYPE           ; Descriptor type
+	.db 0x81                         ; Endpoint number, and direction
+	.db ENDPOINT_TYPE_INT            ; Endpoint type
+	.db 0x40                         ; Maximum packet size (LSB)
+	.db 0x00                         ; Max packet size (MSB)
+	.db 0x40                         ; Polling interval
 
-
+	;; CDC Virtual COM Port Data Interface Descriptor
 	; data endpoints
-	.db	DSCR_INTERFACE_LEN
-	.db	DSCR_INTERFACE_TYPE
-	.db	0x01				; index
-	.db	0x00				; alt setting idx
-	.db	0x02				; n endpoints
-	.db	0x0a				; class
-	.db	0x00
-	.db	0x00
-	.db	0x00				; string index
+	.db DSCR_INTERFACE_LEN           ; Descriptor length
+	.db DSCR_INTERFACE_TYPE          ; Descriptor type
+	.db 0x01                         ; Zero-based index of this interface
+	.db 0x00                         ; Alternate setting
+	.db 0x02                         ; Number of end points
+	.db 0x0A                         ; Interface class
+	.db 0x00                         ; Interface sub class
+	.db 0x00                         ; Interface protocol code class
+	.db 0x00                         ; Interface descriptor string index
 
 ; endpoint 2 out
-	.db	DSCR_ENDPOINT_LEN
-	.db	DSCR_ENDPOINT_TYPE
-	.db	0x02				; ep2 dir=OUT and address
-	.db	ENDPOINT_TYPE_BULK		; type
-	.db	0x00				; max packet LSB
-	.db	0x02				; max packet size=512 bytes
-	.db	0x00				; polling interval
+	.db DSCR_ENDPOINT_LEN            ; Descriptor length
+	.db DSCR_ENDPOINT_TYPE           ; Descriptor type
+	.db 0x02                         ; Endpoint number (ep2), and direction (out)
+	.db ENDPOINT_TYPE_BULK           ; Endpoint type
+	.db 0x00                         ; Maximum packet size (LSB)
+	.db 0x02                         ; Max packet size (MSB) == 512 bytes
+	.db 0x00                         ; Polling interval
 
 ; endpoint 6 in
-	.db	DSCR_ENDPOINT_LEN
-	.db	DSCR_ENDPOINT_TYPE
-	.db	0x86				; ep6 dir=in and address
-	.db	ENDPOINT_TYPE_BULK		; type
-	.db	0x00				; max packet LSB
-	.db	0x02				; max packet size=512 bytes
-	.db	0x00				; polling interval
+	.db DSCR_ENDPOINT_LEN            ; Descriptor length
+	.db DSCR_ENDPOINT_TYPE           ; Descriptor type
+	.db 0x86                         ; Endpoint number (ep6), and direction (in)
+	.db ENDPOINT_TYPE_BULK           ; Endpoint type
+	.db 0x00                         ; Maximum packet size (LSB)
+	.db 0x02                         ; Max packet size (MSB) == 512 bytes
+	.db 0x00                         ; Polling interval
 
 highspd_dscr_realend:
 
-    .even
+; Full speed CDC configuration. Max packet size is 64 bytes.
+	.even
 _fullspd_dscr:
 	.db	fullspd_dscr_end-_fullspd_dscr      ; dscr len
 	.db	DSCR_CONFIG_TYPE
@@ -201,43 +205,42 @@ fullspd_dscr_end:
 	.db	0x1
 	.db	3	             ; string index
 
-	; CDC header
-	.db	0x05
-	.db	0x24
-	.db	0x00
-	.db	0x10
-	.db	0x01
+	;; CDC Header Functional Descriptor
+	.db 0x05                         ; Descriptor Size in Bytes (5)
+	.db 0x24                         ; CS_Interface
+	.db 0x00                         ; Header Functional Descriptor
+	.dw 0x1001                       ; bcdCDC
 
-	; CDC ACM
-	.db	0x04
-	.db	0x24
-	.db	0x02
-	.db	0x00
+	;; CDC ACM Functional Descriptor
+	.db 0x04                         ; Descriptor Size in Bytes (5)
+	.db 0x24                         ; CS_Interface
+	.db 0x02                         ; Abstarct Control Management Functional Desc
+	.db 0x00                         ; bmCapabilities
 
-	; CDC union
-	.db     0x05
-	.db	0x24
-	.db	0x06
-	.db	0x00
-	.db	0x01
+	;; CDC Union Functional Descriptor
+	.db 0x05                         ; Descriptor Size in Bytes (5)
+	.db 0x24                         ; CS_Interface
+	.db 0x06                         ; Union Functional Descriptor
+	.db 0x00                         ; bMasterInterface
+	.db 0x01                         ; bSlaveInterface0
 
-	; CDC call managment
-	.db     0x05
-	.db	0x24
-	.db	0x01
-	.db	0x01
-	.db	0x01
+	;; CDC Call Management (CM) Functional Descriptor
+	.db 0x05                         ; Descriptor Size in Bytes (5)
+	.db 0x24                         ; CS_Interface
+	.db 0x01                         ; CM Functional Descriptor
+	.db 0x01                         ; bmCapabilities
+	.db 0x01                         ; bDataInterface
 
 ; endpoint 1 in
-	.db	DSCR_ENDPOINT_LEN
-	.db	DSCR_ENDPOINT_TYPE
-	.db	0x81				; ep1 dir=IN and address
-	.db	ENDPOINT_TYPE_INT		; type
-	.db	0x40				; max packet LSB
-	.db	0x00				; max packet size=512 bytes
-	.db	0x40				; polling interval
+	.db DSCR_ENDPOINT_LEN            ; Descriptor length
+	.db DSCR_ENDPOINT_TYPE           ; Descriptor type
+	.db 0x81                         ; Endpoint number (ep1), and direction (in)
+	.db ENDPOINT_TYPE_INT            ; Endpoint type
+	.db 0x40                         ; Maximum packet size (LSB)
+	.db 0x00                         ; Max packet size (MSB) == 512 bytes
+	.db 0x40                         ; Polling interval
 
-
+	;; CDC Virtual COM Port Data Interface Descriptor
 	; data endpoints
 	.db	DSCR_INTERFACE_LEN
 	.db	DSCR_INTERFACE_TYPE
@@ -250,22 +253,22 @@ fullspd_dscr_end:
 	.db	0x00				; string index
 
 ; endpoint 2 out
-	.db	DSCR_ENDPOINT_LEN
-	.db	DSCR_ENDPOINT_TYPE
-	.db	0x02				; ep2 dir=OUT and address
-	.db	ENDPOINT_TYPE_BULK		; type
-	.db	0x40				; max packet LSB
-	.db	0x00				; max packet size=64 bytes
-	.db	0x00				; polling interval
+	.db DSCR_ENDPOINT_LEN            ; Descriptor length
+	.db DSCR_ENDPOINT_TYPE           ; Descriptor type
+	.db 0x02                         ; Endpoint number (ep2), and direction (out)
+	.db ENDPOINT_TYPE_BULK           ; Endpoint type
+	.db 0x40                         ; Maximum packet size (LSB)
+	.db 0x00                         ; Max packet size (MSB) == 64 bytes
+	.db 0x00                         ; Polling interval
 
 ; endpoint 6 in
-	.db	DSCR_ENDPOINT_LEN
-	.db	DSCR_ENDPOINT_TYPE
-	.db	0x86				;  ep6 dir=in and address
-	.db	ENDPOINT_TYPE_BULK		; type
-	.db	0x40				; max packet LSB
-	.db	0x00				; max packet size=64 bytes
-	.db	0x00				; polling interval
+	.db DSCR_ENDPOINT_LEN            ; Descriptor length
+	.db DSCR_ENDPOINT_TYPE           ; Descriptor type
+	.db 0x86                         ; Endpoint number (ep6), and direction (in)
+	.db ENDPOINT_TYPE_BULK           ; Endpoint type
+	.db 0x40                         ; Maximum packet size (LSB)
+	.db 0x00                         ; Max packet size (MSB) == 64 bytes
+	.db 0x00                         ; Polling interval
 
 fullspd_dscr_realend:
 
@@ -275,32 +278,32 @@ _dev_strings:
 _string0:
 	.db	string0end-_string0 ; len
 	.db	DSCR_STRING_TYPE
-    .db 0x09, 0x04     ; who knows
+	.db 0x09, 0x04     ; who knows
 string0end:
 ; add more strings here
 
 _string1:
-    .db string1end-_string1
-    .db DSCR_STRING_TYPE
-    .ascii 'H'
-    .db 0
-    .ascii 'i'
-    .db 0
+	.db string1end-_string1
+	.db DSCR_STRING_TYPE
+	.ascii 'H'
+	.db 0
+	.ascii 'i'
+	.db 0
 string1end:
 
 _string2:
-    .db string2end-_string2
-    .db DSCR_STRING_TYPE
-    .ascii 'T'
-    .db 0
-    .ascii 'h'
-    .db 0
-    .ascii 'e'
-    .db 0
-    .ascii 'r'
-    .db 0
-    .ascii 'e'
-    .db 0
+	.db string2end-_string2
+	.db DSCR_STRING_TYPE
+	.ascii 'T'
+	.db 0
+	.ascii 'h'
+	.db 0
+	.ascii 'e'
+	.db 0
+	.ascii 'r'
+	.db 0
+	.ascii 'e'
+	.db 0
 string2end:
 
 _string3:
@@ -342,4 +345,4 @@ _dev_serial:
 string3end:
 
 _dev_strings_end:
-    .dw 0x0000   ; just in case someone passes an index higher than the end to the firmware
+	.dw 0x0000   ; just in case someone passes an index higher than the end to the firmware
