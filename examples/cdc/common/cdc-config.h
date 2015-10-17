@@ -1,5 +1,9 @@
 // The endpoint which data is sent **from** the host down to the CDC serial
 // port.
+
+#define CDC_H2D_RESET(x) \
+  RESET ## x(0x02);
+
 #define CDC_H2D_EP(x) \
   EP2 ## x
 
@@ -7,6 +11,9 @@
   bmEP2 ## x
 
 // The endpoint which data is sent **to** the host from the CDC serial port.
+#define CDC_D2H_RESET(x) \
+  RESET ## x(0x80|0x06);
+
 #define CDC_D2H_EP(x) \
   EP6 ## x
 

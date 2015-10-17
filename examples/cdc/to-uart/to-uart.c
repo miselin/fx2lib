@@ -220,15 +220,15 @@ BOOL handle_set_interface(BYTE ifc, BYTE alt_ifc) {
 	if (ifc==0&&alt_ifc==0) {
 		// SEE TRM 2.3.7
 		// reset toggles
-		RESETTOGGLE(0x02);
-		RESETTOGGLE(0x86);
+		CDC_H2D_RESET(TOGGLE);
+		CDC_D2H_RESET(TOGGLE);
 		// restore endpoints to default condition
-		RESETFIFO(0x02);
+		CDC_H2D_RESET(FIFO);
 		CDC_H2D_EP(BCL)=0x80;
 		SYNCDELAY;
 		CDC_H2D_EP(BCL)=0X80;
 		SYNCDELAY;
-		RESETFIFO(0x86);
+		CDC_D2H_RESET(FIFO);
 		return TRUE;
 	} else {
 		return FALSE;
