@@ -25,18 +25,15 @@
 #include <lights.h>
 #include <setupdat.h>
 #include <eputils.h>
+#include <i2c.h>
 
 #include "cdc.h"
 
 #define SYNCDELAY SYNCDELAY4
-#define REARMVAL 0x80
-#define REARM() EP2BCL=REARMVAL
 
 // -----------------------------------------------------------------------
 
 #include "main-custom.c"
-
-// -----------------------------------------------------------------------
 
 volatile WORD bytes;
 volatile __bit gotbuf;
@@ -69,9 +66,11 @@ void main() {
 	ENABLE_USBRESET();
  
 	// only valid endpoints are 2/6
-	EP2CFG = 0xA2; // 10100010
+	// Activate, OUT Direction, BULK Type, 512  bytes Size, Double buffered
+	CDC_H2D_EP(CFG) = 0xA2; // 10100010
 	SYNCDELAY;
-	EP6CFG = 0xE2; // 11100010 
+	// Activate, IN  Direction, BULK Type, 512  bytes Size, Double buffered
+	CDC_D2H_EP(CFG) = 0xE2; // 11100010
 	SYNCDELAY;
 
 	EP1INCFG &= ~bmVALID;
@@ -86,11 +85,11 @@ void main() {
 	SYNCDELAY; 
  
 	// arm ep2
-	EP2BCL = 0x80; // write once
+	CDC_H2D_EP(BCL) = 0x80; // write once
 	SYNCDELAY;
-	EP2BCL = 0x80; // do it again
+	CDC_H2D_EP(BCL) = 0x80; // do it again
 
-	// make it so we enumberate
+	// make it so we enumerate
  
 	ES0 = 1; /* enable serial interrupts */
 	PS0 = 0; /* set serial interrupts to low priority */
@@ -105,6 +104,7 @@ void main() {
 			handle_setupdata(); 
 			got_sud=FALSE;
 		}
+
 		cdc_receive_poll();
 	}
 }
@@ -150,15 +150,15 @@ BOOL handle_set_interface(BYTE ifc, BYTE alt_ifc) {
 	if (ifc==0&&alt_ifc==0) {
 		// SEE TRM 2.3.7
 		// reset toggles
-		RESETTOGGLE(0x02);
-		RESETTOGGLE(0x86);
+		CDC_H2D_RESET(TOGGLE);
+		CDC_D2H_RESET(TOGGLE);
 		// restore endpoints to default condition
-		RESETFIFO(0x02);
-		EP2BCL=0x80;
+		CDC_H2D_RESET(FIFO);
+		CDC_H2D_EP(BCL)=0x80;
 		SYNCDELAY;
-		EP2BCL=0X80;
+		CDC_H2D_EP(BCL)=0X80;
 		SYNCDELAY;
-		RESETFIFO(0x86);
+		CDC_D2H_RESET(FIFO);
 		return TRUE;
 	} else {
 		return FALSE;
