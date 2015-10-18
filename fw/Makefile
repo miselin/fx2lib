@@ -20,7 +20,8 @@
 SOURCES=fw.c device.c
 A51_SOURCES=dscr.a51
 BASENAME=firmware
-
+SDCCFLAGS=-DENABLE_WCID
+export SDCCFLAGS
 
 include ../lib/fx2.mk
 

@@ -39,6 +39,19 @@ extern BOOL handle_set_interface(BYTE ifc, BYTE alt_ifc);
 extern BYTE handle_get_configuration();
 extern void handle_reset_ep(BYTE ep);
 
+/* these are devined in dscr.asm
+   and need to be customized then
+   linked in by the firmware manually */
+extern __code WORD dev_dscr;
+extern __code WORD dev_qual_dscr;
+extern __code WORD highspd_dscr;
+extern __code WORD fullspd_dscr;
+extern __code WORD dev_strings;
+#ifdef ENABLE_WCID
+extern __code WORD WCIDFeature;
+extern __code WORD WCIDString;
+#endif
+
 /**
  * Forward declaration for handlers
  **/
@@ -120,6 +133,18 @@ void handle_setupdata() {
                 STALLEP0();
             }
             break;
+
+#ifdef ENABLE_WCID
+        case WCID_VENDOR:
+            if (SETUPDAT[4] == 0x04 && SETUPDAT[5] == 0x00) {
+                SUDPTRH = MSB((WORD)&WCIDFeature);
+                SUDPTRL = LSB((WORD)&WCIDFeature);
+            } else if (!handle_vendorcommand(SETUPDAT[1])) {
+                printf ( "Unhandled Vendor Command: %02x\n" , SETUPDAT[1] );
+                STALLEP0();
+            }
+            break;
+#endif
         default:
             if (!handle_vendorcommand(SETUPDAT[1])) {
                 printf("Unhandled Vendor Command: 0x%02x\n" , SETUPDAT[1]);
@@ -283,6 +308,10 @@ extern __code WORD dev_qual_dscr;
 extern __code WORD highspd_dscr;
 extern __code WORD fullspd_dscr;
 extern __code WORD dev_strings;
+#ifdef ENABLE_WCID
+extern __code WORD WCIDFeature;
+extern __code WORD WCIDString;
+#endif
 
 /**
  * \brief Pointer to the active descriptor.
@@ -337,16 +366,25 @@ void _handle_get_descriptor() {
                 STRING_DSCR* pStr = (STRING_DSCR*)&dev_strings;
                 // pStr points to string 0
                 BYTE idx = SETUPDAT[2];
-                BYTE cur=0; // current check
-                do {
-                    if (idx==cur++) break;
-                    //printf("Length of pStr: %d\n", pStr->dsc_len);
-                    //printf("pstr: 0x%04x to ", pStr);
-                    pStr = (STRING_DSCR*)((BYTE*)pStr + pStr->dsc_len);
-                    //printf("%04x\n", pStr);
-                    if (pStr->dsc_type != DSCR_STRING_TYPE) pStr=NULL;
-                } while ( pStr && cur<=idx);
-                
+#ifdef ENABLE_WCID
+                if (idx == 0xEE) {
+                    // special string descriptor for WCID
+                    STRING_DSCR* pStr = (STRING_DSCR*)&WCIDString;
+                } else {
+#else
+                if (1) {
+#endif
+                    BYTE cur=0; // current check
+                    do {
+                        if (idx==cur++) break;
+                        //printf("Length of pStr: %d\n", pStr->dsc_len);
+                        //printf("pstr: %04x to ", pStr);
+                        pStr = (STRING_DSCR*)((BYTE*)pStr + pStr->dsc_len);
+                        //printf("%04x\n" , pStr);
+                        if (pStr->dsc_type != DSCR_STRING_TYPE) pStr=NULL;
+                    } while ( pStr && cur<=idx);
+                }
+
                 if (pStr) {
                     //BYTE i;
                     //printf("found str: '");

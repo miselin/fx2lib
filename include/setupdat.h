@@ -133,7 +133,10 @@ typedef enum {
     SET_CONFIGURATION,
     GET_INTERFACE,
     SET_INTERFACE,
-    SYNC_FRAME
+    SYNC_FRAME,
+    // WCID support for automatic install on Windows machines without messing
+    // with drivers.
+    WCID_VENDOR=0x88 
 } SETUP_DATA;
 
 
