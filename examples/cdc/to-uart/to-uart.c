@@ -36,7 +36,10 @@ void cdcuser_receive_data(BYTE* data, WORD length) {
         WORD i;
         for (i=0; i < length ; ++i) {
 		SBUF0 = data[i];
-		while(TI);
+		// Wait for TI to go high, which means that the byte has been
+		// sent.
+		while(!TI);
+		// TI will be cleared in the interrupt handler.
 	}
 }
 
@@ -54,6 +57,5 @@ void ISR_USART0(void) __interrupt 4 __critical {
 	}
 	if (TI) {
 		TI=0;
-//		transmit();
 	}
 }
