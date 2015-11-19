@@ -32,16 +32,19 @@ BOOL cdcuser_set_line_rate(DWORD baud_rate) {
 	return TRUE;
 }
 
+
+volatile __bit byte_sending = TRUE;
 void cdcuser_receive_data(BYTE* data, WORD length) {
         WORD i;
         for (i=0; i < length ; ++i) {
+		// Wait for any previous byte to send. byte_sending is cleared
+		// in the USART0 ISR.
+		while(byte_sending);
+		byte_sending = TRUE;
 		SBUF0 = data[i];
-		// Wait for TI to go high, which means that the byte has been
-		// sent.
-		while(!TI);
-		// TI will be cleared in the interrupt handler.
 	}
 }
+
 
 void ISR_USART0(void) __interrupt 4 __critical {
 	if (RI) {
@@ -57,5 +60,6 @@ void ISR_USART0(void) __interrupt 4 __critical {
 	}
 	if (TI) {
 		TI=0;
+		byte_sending = FALSE;
 	}
 }
