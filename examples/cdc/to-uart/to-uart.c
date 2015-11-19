@@ -24,6 +24,8 @@
 #include "cdc.h"
 */
 
+#include <fx2ints.h>
+
 // -----------------------------------------------------------------------
 
 BOOL cdcuser_set_line_rate(DWORD baud_rate) {
@@ -46,8 +48,9 @@ void cdcuser_receive_data(BYTE* data, WORD length) {
 	}
 }
 
-
-void ISR_USART0(void) __interrupt 4 __critical {
+// Serial port 0 transmit or receive interrupt
+// *MUST* Clear TI and RI bits.
+void ISR_USART0(void) __interrupt TI_0_ISR __critical {
 	if (RI) {
 		RI=0;
 		if (!cdc_can_send()) {
