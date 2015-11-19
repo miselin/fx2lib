@@ -64,10 +64,18 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#a3a652ec8f69020027b0fd717ab2ba8db">INTERRUPT_HIGH_PRIO</a>&#160;&#160;&#160;1</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt high priority.  <a href="#a3a652ec8f69020027b0fd717ab2ba8db"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#a8da81e1be2f14b045d1d5ce2edd14693">INTERRUPT_LOW_PRIO</a>&#160;&#160;&#160;0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt low priority.  <a href="#a8da81e1be2f14b045d1d5ce2edd14693"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#a54b05d1ccade0573afa85ed0c6a455d8">ENABLE_TIMER0</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ab27313b8735056bd0a2a4b327945ab59">ET0</a>=1</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the timer 0 interrupt.  <a href="#a54b05d1ccade0573afa85ed0c6a455d8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#ad94baf155cad69f4857ce15cb51ac942">CLEAR_TIMER0</a>()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear timer 0 interrupt.  <a href="#ad94baf155cad69f4857ce15cb51ac942"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#afcacbfd9ed52e7b1b71cd8afa94b3f22">ENABLE_TIMER1</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a89d3143e10973121702533d1825a86ff">ET1</a>=1</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable timer 1 interrupt There is no CLEAR_TIMER1 because the timer interrupt flag is automatically cleared when the isr is called.  <a href="#afcacbfd9ed52e7b1b71cd8afa94b3f22"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable timer 1 interrupt.  <a href="#afcacbfd9ed52e7b1b71cd8afa94b3f22"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#af5638359e07fee6e9a9865a882b382ef">CLEAR_TIMER1</a>()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear timer 1 interrupt.  <a href="#af5638359e07fee6e9a9865a882b382ef"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#aa96dda8b9355aa075e351d431150fefc">ENABLE_TIMER2</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a3ecbc79c30d3703b66f54644424cab8c">ET2</a>=1</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable timer 2 interrupt.  <a href="#aa96dda8b9355aa075e351d431150fefc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#a512b593524542657fc7087f91f7a0a88">CLEAR_TIMER2</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#aff3807836a09abdbef207b12de9b7d3c">TF2</a>=0;<a class="el" href="fx2regs_8h.html#aa3337e46527cfabaa4d0c664ed250e55">EXF2</a>=0;</td></tr>
@@ -76,11 +84,36 @@ Defines</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the Resume Interrupt. Requires EA=1 separately.  <a href="#a95df470686ff623c08b75542247f52b1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#ac2086c0e85e889d34e6892d2c484a3fd">CLEAR_RESUME</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a73087ab03d46f3228a8112de805672a8">RESI</a>=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the resume interrupt. Use within the resume interrupt handler.  <a href="#ac2086c0e85e889d34e6892d2c484a3fd"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#ac2b1708b53a414f5bb74d0451ddf0a04">ENABLE_INT4</a>()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#a67f023e0c13f497089e5cc190579ac09">ENABLE_INT5</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a2ed1882cc33365b25b99955f5038e21c">EIEX5</a>=1</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable external interupt for int5#.  <a href="#a67f023e0c13f497089e5cc190579ac09"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#a60c244bb542766b9d821e03e618b9716">CLEAR_INT5</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ae5a28d2838ef4e0dd37c216af47abece">EXIF</a> &amp;= ~0x80</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear int5# interrupt.  <a href="#a60c244bb542766b9d821e03e618b9716"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable external interrupt for INT5#.  <a href="#a67f023e0c13f497089e5cc190579ac09"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#a60c244bb542766b9d821e03e618b9716">CLEAR_INT5</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ae5a28d2838ef4e0dd37c216af47abece">EXIF</a> &amp;= ~<a class="el" href="fx2regs_8h.html#a9b08a42ac9e6e5ca2e09adec6af4fd2d">bmIE5</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear INT5# interrupt.  <a href="#a60c244bb542766b9d821e03e618b9716"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#ab49b4eada6442afc24ba587f27ff154f">SET_USART0_ISR_PRIORITY</a>(p)&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a874671082c068efdf9a6affc9cd64ce1">PS0</a> = p</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the USART 0 interrupt priority.  <a href="#ab49b4eada6442afc24ba587f27ff154f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#af4a95b5c9c8ae018af9dbee5dcb7b685">ENABLE_USART0</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a0e2e043b9d25be1c81732829e262758d">ES0</a> = 1;</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the USART 0 interrupt.  <a href="#af4a95b5c9c8ae018af9dbee5dcb7b685"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#a416e8ee3ae744aa70d00c3b2e07be147">CLEAR_USART0_RX</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ac0a95630e76cf57312ca4e8d19e8716a">RI</a> = 0;</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear USART 0 RX bit.  <a href="#a416e8ee3ae744aa70d00c3b2e07be147"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#af9efde5701ab0d8097f9bb969f502323">CLEAR_USART0_TX</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ab58cd6374389bdf8244306c0568316a3">TI</a> = 0;</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear USART 0 TX bit.  <a href="#af9efde5701ab0d8097f9bb969f502323"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#aabffc2ed0f6e511f865661f602bbbaec">CLEAR_USART0</a>()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear USART 0 both TX &amp; RX bit.  <a href="#aabffc2ed0f6e511f865661f602bbbaec"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#a787c08205acdc4c2f2681d1c53a2fcd7">SET_USART1_ISR_PRIORITY</a>(p)&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a725d9063ab645150e46fe62f3f71989b">PS1</a> = p</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the USART 1 interrupt priority.  <a href="#a787c08205acdc4c2f2681d1c53a2fcd7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#a595723cc836ce16a1c89dddaf186f400">ENABLE_USART1</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ac2f93d33a237aa26c9f056d0e4ac5eab">ES1</a> = 1;</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the USART 1 interrupt.  <a href="#a595723cc836ce16a1c89dddaf186f400"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#a69ab9cd9e8ce3f814f330261f7b071ef">CLEAR_USART1_RX</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ac8b008a17cc08fa2f96cc9937eef7949">RI1</a> = 0;</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear USART 1 receive (RI1) bit.  <a href="#a69ab9cd9e8ce3f814f330261f7b071ef"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#a8b5a8472f17af56c9732e20e24db9d3d">CLEAR_USART1_TX</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a1192314abb1bae3e89814f21e467e7b4">TI1</a> = 0;</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear USART 1 transmit (TI1) bit.  <a href="#a8b5a8472f17af56c9732e20e24db9d3d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#aa7e8af7c95eb963cc2a9fe260b21fa8a">CLEAR_USART1</a>()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear USART 1 both TX &amp; RX bits.  <a href="#aa7e8af7c95eb963cc2a9fe260b21fa8a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#afc0cb315caaffe80c674dfe7335711d2">SET_I2C_ISR_PRIORITY</a>(p)&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a38de51fd22726fae74416cc198574e30">PI2C</a> = p</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the I2C interrupt priority.  <a href="#afc0cb315caaffe80c674dfe7335711d2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#abe3e4ed1d33649d0624af0f829ded1f6">ENABLE_I2C</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a223538133f544c2d35a94d42c0686778">EI2C</a> = 1;</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the I2C interrupt.  <a href="#abe3e4ed1d33649d0624af0f829ded1f6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#aa6654ea5f1ac08177ba10a53afc1981a">CLEAR_I2C</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ae5a28d2838ef4e0dd37c216af47abece">EXIF</a> &amp;= ~<a class="el" href="fx2regs_8h.html#ab25e8041f50705499e026d5b69a880fa">bmI2CINT</a>;</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear I2C interrupt.  <a href="#aa6654ea5f1ac08177ba10a53afc1981a"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2ints_8h.html#a48b90e65d400542fd0fecf54ab31da1e">FX2_ISR</a> { <br/>
@@ -99,13 +132,15 @@ Enumerations</h2></td></tr>
 <a class="el" href="fx2ints_8h.html#a48b90e65d400542fd0fecf54ab31da1ea86e02b45ed90c2107da717af9d4773fa">IE4_ISR</a>, 
 <a class="el" href="fx2ints_8h.html#a48b90e65d400542fd0fecf54ab31da1ea49d5014405a781bc1cf4f07a2575364e">IE5_ISR</a>, 
 <br/>
-&#160;&#160;<a class="el" href="fx2ints_8h.html#a48b90e65d400542fd0fecf54ab31da1ea157960af743cc39c125b2164aaf6596f">IE6_ISR</a>
+&#160;&#160;<a class="el" href="fx2ints_8h.html#a48b90e65d400542fd0fecf54ab31da1ea157960af743cc39c125b2164aaf6596f">IE6_ISR</a>, 
+<a class="el" href="fx2ints_8h.html#a48b90e65d400542fd0fecf54ab31da1ea182f6073e5e71a7a668ed4f4ff751fb1">USART0_ISR</a> =  TI_0_ISR, 
+<a class="el" href="fx2ints_8h.html#a48b90e65d400542fd0fecf54ab31da1eaaa7de12136470fea6854c505d66bf432">USART1_ISR</a> =  TI_1_ISR
 <br/>
  }</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">interrupt numbers for standard fx2 interrupts  <a href="fx2ints_8h.html#a48b90e65d400542fd0fecf54ab31da1e">More...</a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt numbers for standard FX2 interrupts.  <a href="fx2ints_8h.html#a48b90e65d400542fd0fecf54ab31da1e">More...</a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Define the standard fx2 interrupts. For int2 and int4 autovector interrupts see <a class="el" href="autovector_8h.html">autovector.h</a></p>
+<div class="textblock"><p>Define the standard FX2 interrupts. For INT2 and INT4 autovector interrupts see <a class="el" href="autovector_8h.html">autovector.h</a></p>
 <p>To enable an interrupt, simply define an interrupt handler function and use the appropriate ENABLE_* macro. Interrupt enable macros do not enable interrupts globally. Use EA=1 to enable interrupts.</p>
 <div class="fragment"><pre class="fragment">      <span class="keywordtype">void</span> main() {
           <a class="code" href="fx2ints_8h.html#a95df470686ff623c08b75542247f52b1" title="Enable the Resume Interrupt. Requires EA=1 separately.">ENABLE_RESUME</a>();
@@ -119,6 +154,26 @@ Enumerations</h2></td></tr>
 </pre></div> 
 <p>Definition in file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
 </div><hr/><h2>Define Documentation</h2>
+<a class="anchor" id="aa6654ea5f1ac08177ba10a53afc1981a"></a><!-- doxytag: member="fx2ints.h::CLEAR_I2C" ref="aa6654ea5f1ac08177ba10a53afc1981a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#aa6654ea5f1ac08177ba10a53afc1981a">CLEAR_I2C</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ae5a28d2838ef4e0dd37c216af47abece">EXIF</a> &amp;= ~<a class="el" href="fx2regs_8h.html#ab25e8041f50705499e026d5b69a880fa">bmI2CINT</a>;</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Clear I2C interrupt. </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00272">272</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a60c244bb542766b9d821e03e618b9716"></a><!-- doxytag: member="fx2ints.h::CLEAR_INT5" ref="a60c244bb542766b9d821e03e618b9716" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -127,15 +182,15 @@ Enumerations</h2></td></tr>
           <td class="memname">#define <a class="el" href="fx2ints_8h.html#a60c244bb542766b9d821e03e618b9716">CLEAR_INT5</a></td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ae5a28d2838ef4e0dd37c216af47abece">EXIF</a> &amp;= ~0x80</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ae5a28d2838ef4e0dd37c216af47abece">EXIF</a> &amp;= ~<a class="el" href="fx2regs_8h.html#a9b08a42ac9e6e5ca2e09adec6af4fd2d">bmIE5</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Clear int5# interrupt. </p>
+<p>Clear INT5# interrupt. </p>
 
-<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00115">115</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00163">163</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
 
 </div>
 </div>
@@ -156,7 +211,49 @@ Enumerations</h2></td></tr>
 <p>Clear the resume interrupt. Use within the resume interrupt handler. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="fw_8c-example.html#a26">fw.c</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00100">100</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00143">143</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad94baf155cad69f4857ce15cb51ac942"></a><!-- doxytag: member="fx2ints.h::CLEAR_TIMER0" ref="ad94baf155cad69f4857ce15cb51ac942" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#ad94baf155cad69f4857ce15cb51ac942">CLEAR_TIMER0</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Clear timer 0 interrupt. </p>
+<p><a class="el" href="fx2ints_8h.html#ad94baf155cad69f4857ce15cb51ac942" title="Clear timer 0 interrupt.">CLEAR_TIMER0()</a> is a NOP because the timer interrupt flag is automatically cleared when the ISR is called. </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00090">90</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af5638359e07fee6e9a9865a882b382ef"></a><!-- doxytag: member="fx2ints.h::CLEAR_TIMER1" ref="af5638359e07fee6e9a9865a882b382ef" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#af5638359e07fee6e9a9865a882b382ef">CLEAR_TIMER1</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Clear timer 1 interrupt. </p>
+<p><a class="el" href="fx2ints_8h.html#af5638359e07fee6e9a9865a882b382ef" title="Clear timer 1 interrupt.">CLEAR_TIMER1()</a> is a NOP because the timer interrupt flag is automatically cleared when the ISR is called. </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00109">109</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
 
 </div>
 </div>
@@ -177,16 +274,16 @@ Enumerations</h2></td></tr>
 <p>Clear timer 2 interrupt. </p>
 <p>Clears both the TF2 AND EXF2 flag </p>
 
-<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00089">89</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00126">126</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac2b1708b53a414f5bb74d0451ddf0a04"></a><!-- doxytag: member="fx2ints.h::ENABLE_INT4" ref="ac2b1708b53a414f5bb74d0451ddf0a04" args="()" -->
+<a class="anchor" id="aabffc2ed0f6e511f865661f602bbbaec"></a><!-- doxytag: member="fx2ints.h::CLEAR_USART0" ref="aabffc2ed0f6e511f865661f602bbbaec" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define <a class="el" href="fx2ints_8h.html#ac2b1708b53a414f5bb74d0451ddf0a04">ENABLE_INT4</a></td>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#aabffc2ed0f6e511f865661f602bbbaec">CLEAR_USART0</a></td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -194,8 +291,136 @@ Enumerations</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="fx2ints_8h.html#a416e8ee3ae744aa70d00c3b2e07be147" title="Clear USART 0 RX bit.">CLEAR_USART0_RX</a>(); \
+        CLEAR_USART0_TX();
+</pre></div>
+<p>Clear USART 0 both TX &amp; RX bit. </p>
 
-<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00103">103</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00202">202</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a416e8ee3ae744aa70d00c3b2e07be147"></a><!-- doxytag: member="fx2ints.h::CLEAR_USART0_RX" ref="a416e8ee3ae744aa70d00c3b2e07be147" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#a416e8ee3ae744aa70d00c3b2e07be147">CLEAR_USART0_RX</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ac0a95630e76cf57312ca4e8d19e8716a">RI</a> = 0;</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Clear USART 0 RX bit. </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00192">192</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af9efde5701ab0d8097f9bb969f502323"></a><!-- doxytag: member="fx2ints.h::CLEAR_USART0_TX" ref="af9efde5701ab0d8097f9bb969f502323" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#af9efde5701ab0d8097f9bb969f502323">CLEAR_USART0_TX</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ab58cd6374389bdf8244306c0568316a3">TI</a> = 0;</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Clear USART 0 TX bit. </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00197">197</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa7e8af7c95eb963cc2a9fe260b21fa8a"></a><!-- doxytag: member="fx2ints.h::CLEAR_USART1" ref="aa7e8af7c95eb963cc2a9fe260b21fa8a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#aa7e8af7c95eb963cc2a9fe260b21fa8a">CLEAR_USART1</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="fx2ints_8h.html#a69ab9cd9e8ce3f814f330261f7b071ef" title="Clear USART 1 receive (RI1) bit.">CLEAR_USART1_RX</a>(); \
+        CLEAR_USART1_TX();
+</pre></div>
+<p>Clear USART 1 both TX &amp; RX bits. </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00242">242</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a69ab9cd9e8ce3f814f330261f7b071ef"></a><!-- doxytag: member="fx2ints.h::CLEAR_USART1_RX" ref="a69ab9cd9e8ce3f814f330261f7b071ef" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#a69ab9cd9e8ce3f814f330261f7b071ef">CLEAR_USART1_RX</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ac8b008a17cc08fa2f96cc9937eef7949">RI1</a> = 0;</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Clear USART 1 receive (RI1) bit. </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00232">232</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8b5a8472f17af56c9732e20e24db9d3d"></a><!-- doxytag: member="fx2ints.h::CLEAR_USART1_TX" ref="a8b5a8472f17af56c9732e20e24db9d3d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#a8b5a8472f17af56c9732e20e24db9d3d">CLEAR_USART1_TX</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a1192314abb1bae3e89814f21e467e7b4">TI1</a> = 0;</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Clear USART 1 transmit (TI1) bit. </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00237">237</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abe3e4ed1d33649d0624af0f829ded1f6"></a><!-- doxytag: member="fx2ints.h::ENABLE_I2C" ref="abe3e4ed1d33649d0624af0f829ded1f6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#abe3e4ed1d33649d0624af0f829ded1f6">ENABLE_I2C</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a223538133f544c2d35a94d42c0686778">EI2C</a> = 1;</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Enable the I2C interrupt. </p>
+<p>Requires enabling global interrupts (EA=1) separately.</p>
+<p>The USART interrupt fires for both *receive* (RX) and *transmit* (TX) completing, the interrupt must clear *both*. </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00267">267</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
 
 </div>
 </div>
@@ -213,9 +438,9 @@ Enumerations</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Enable external interupt for int5#. </p>
+<p>Enable external interrupt for INT5#. </p>
 
-<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00109">109</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00157">157</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
 
 </div>
 </div>
@@ -236,7 +461,7 @@ Enumerations</h2></td></tr>
 <p>Enable the Resume Interrupt. Requires EA=1 separately. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="fw_8c-example.html#a9">fw.c</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00094">94</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00137">137</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
 
 </div>
 </div>
@@ -255,9 +480,9 @@ Enumerations</h2></td></tr>
 <div class="memdoc">
 
 <p>Enable the timer 0 interrupt. </p>
-<p>There is not CLEAR_TIMER0 because the timer interrupt flag is automatically cleared when the isr is called. </p>
+<p><a class="el" href="fx2ints_8h.html#ad94baf155cad69f4857ce15cb51ac942" title="Clear timer 0 interrupt.">CLEAR_TIMER0()</a> is a NOP because the timer interrupt flag is automatically cleared when the ISR is called. </p>
 
-<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00067">67</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00082">82</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
 
 </div>
 </div>
@@ -275,9 +500,10 @@ Enumerations</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Enable timer 1 interrupt There is no CLEAR_TIMER1 because the timer interrupt flag is automatically cleared when the isr is called. </p>
+<p>Enable timer 1 interrupt. </p>
+<p><a class="el" href="fx2ints_8h.html#af5638359e07fee6e9a9865a882b382ef" title="Clear timer 1 interrupt.">CLEAR_TIMER1()</a> is a NOP because the timer interrupt flag is automatically cleared when the ISR is called. </p>
 
-<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00074">74</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00101">101</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
 
 </div>
 </div>
@@ -298,7 +524,154 @@ Enumerations</h2></td></tr>
 <p>Enable timer 2 interrupt. </p>
 <p>This is the same interrupt whether timer 2 overflowed or for the external EXF2 flag. </p>
 
-<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00083">83</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00120">120</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af4a95b5c9c8ae018af9dbee5dcb7b685"></a><!-- doxytag: member="fx2ints.h::ENABLE_USART0" ref="af4a95b5c9c8ae018af9dbee5dcb7b685" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#af4a95b5c9c8ae018af9dbee5dcb7b685">ENABLE_USART0</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a0e2e043b9d25be1c81732829e262758d">ES0</a> = 1;</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Enable the USART 0 interrupt. </p>
+<p>Requires enabling global interrupts (EA=1) separately.</p>
+<p>The USART interrupt fires for both *receive* (RX) and *transmit* (TX) completing, the interrupt must clear *both*. </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00187">187</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a595723cc836ce16a1c89dddaf186f400"></a><!-- doxytag: member="fx2ints.h::ENABLE_USART1" ref="a595723cc836ce16a1c89dddaf186f400" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#a595723cc836ce16a1c89dddaf186f400">ENABLE_USART1</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#ac2f93d33a237aa26c9f056d0e4ac5eab">ES1</a> = 1;</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Enable the USART 1 interrupt. </p>
+<p>Requires enabling global interrupts (EA=1) separately.</p>
+<p>The USART interrupt fires for both *receive* (RX) and *transmit* (TX) completing, the interrupt must clear *both*. </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00227">227</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3a652ec8f69020027b0fd717ab2ba8db"></a><!-- doxytag: member="fx2ints.h::INTERRUPT_HIGH_PRIO" ref="a3a652ec8f69020027b0fd717ab2ba8db" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#a3a652ec8f69020027b0fd717ab2ba8db">INTERRUPT_HIGH_PRIO</a>&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Interrupt high priority. </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00066">66</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8da81e1be2f14b045d1d5ce2edd14693"></a><!-- doxytag: member="fx2ints.h::INTERRUPT_LOW_PRIO" ref="a8da81e1be2f14b045d1d5ce2edd14693" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#a8da81e1be2f14b045d1d5ce2edd14693">INTERRUPT_LOW_PRIO</a>&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Interrupt low priority. </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00070">70</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afc0cb315caaffe80c674dfe7335711d2"></a><!-- doxytag: member="fx2ints.h::SET_I2C_ISR_PRIORITY" ref="afc0cb315caaffe80c674dfe7335711d2" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#afc0cb315caaffe80c674dfe7335711d2">SET_I2C_ISR_PRIORITY</a></td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">p</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a38de51fd22726fae74416cc198574e30">PI2C</a> = p</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set the I2C interrupt priority. </p>
+<p>Does *not* enable the interrupt.</p>
+<p>SET_I2C_ISR_PRIO(INTERRUPT_HIGH_PRIO) -- Set I2C to high priority SET_I2C_ISR_PRIO(INTERRUPT_LOW_PRIO) -- Set I2C to low priority </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00257">257</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab49b4eada6442afc24ba587f27ff154f"></a><!-- doxytag: member="fx2ints.h::SET_USART0_ISR_PRIORITY" ref="ab49b4eada6442afc24ba587f27ff154f" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#ab49b4eada6442afc24ba587f27ff154f">SET_USART0_ISR_PRIORITY</a></td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">p</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a874671082c068efdf9a6affc9cd64ce1">PS0</a> = p</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set the USART 0 interrupt priority. </p>
+<p>Does *not* enable the interrupt.</p>
+<p>SET_USART0_ISR_PRIO(INTERRUPT_HIGH_PRIO) -- Set USART0 to high priority SET_USART0_ISR_PRIO(INTERRUPT_LOW_PRIO) -- Set USART0 to low priority </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00177">177</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a787c08205acdc4c2f2681d1c53a2fcd7"></a><!-- doxytag: member="fx2ints.h::SET_USART1_ISR_PRIORITY" ref="a787c08205acdc4c2f2681d1c53a2fcd7" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2ints_8h.html#a787c08205acdc4c2f2681d1c53a2fcd7">SET_USART1_ISR_PRIORITY</a></td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">p</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a725d9063ab645150e46fe62f3f71989b">PS1</a> = p</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set the USART 1 interrupt priority. </p>
+<p>Does *not* enable the interrupt.</p>
+<p>SET_USART1_ISR_PRIO(INTERRUPT_HIGH_PRIO) -- Set USART1 to high priority SET_USART1_ISR_PRIO(INTERRUPT_LOW_PRIO) -- Set USART1 to low priority </p>
+
+<p>Definition at line <a class="el" href="fx2ints_8h_source.html#l00217">217</a> of file <a class="el" href="fx2ints_8h_source.html">fx2ints.h</a>.</p>
 
 </div>
 </div>
@@ -314,7 +687,7 @@ Enumerations</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>interrupt numbers for standard fx2 interrupts </p>
+<p>Interrupt numbers for standard FX2 interrupts. </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="a48b90e65d400542fd0fecf54ab31da1ea17b8c54c177a031169c6c12c4f37adff"></a><!-- doxytag: member="IE0_ISR" ref="a48b90e65d400542fd0fecf54ab31da1ea17b8c54c177a031169c6c12c4f37adff" args="" -->IE0_ISR</em>&nbsp;</td><td>
 <p>External interrupt 0. </p>
@@ -341,19 +714,23 @@ Enumerations</h2></td></tr>
 <p>Serial port 1 transmit or receive interrupt. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a48b90e65d400542fd0fecf54ab31da1ea42bc8da89b1beffcadd087d1df61f012"></a><!-- doxytag: member="USBINT_ISR" ref="a48b90e65d400542fd0fecf54ab31da1ea42bc8da89b1beffcadd087d1df61f012" args="" -->USBINT_ISR</em>&nbsp;</td><td>
-<p>Usb Interrupt. An interrupt handler for this should only be used if not using auto vectored interrupts with int2. </p>
+<p>USB Interrupt. An interrupt handler for this should only be used if not using auto vectored interrupts with INT2. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a48b90e65d400542fd0fecf54ab31da1ea56268cb52a6341c85c705a8e175adebb"></a><!-- doxytag: member="I2CINT_ISR" ref="a48b90e65d400542fd0fecf54ab31da1ea56268cb52a6341c85c705a8e175adebb" args="" -->I2CINT_ISR</em>&nbsp;</td><td>
 <p>I2C Bus interrupt. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a48b90e65d400542fd0fecf54ab31da1ea86e02b45ed90c2107da717af9d4773fa"></a><!-- doxytag: member="IE4_ISR" ref="a48b90e65d400542fd0fecf54ab31da1ea86e02b45ed90c2107da717af9d4773fa" args="" -->IE4_ISR</em>&nbsp;</td><td>
-<p>External interrupt 4. An interrupt handler for this should only be used if not using auto vectored interrupts with int4. </p>
+<p>External interrupt 4. An interrupt handler for this should only be used if not using auto vectored interrupts with INT4. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a48b90e65d400542fd0fecf54ab31da1ea49d5014405a781bc1cf4f07a2575364e"></a><!-- doxytag: member="IE5_ISR" ref="a48b90e65d400542fd0fecf54ab31da1ea49d5014405a781bc1cf4f07a2575364e" args="" -->IE5_ISR</em>&nbsp;</td><td>
 <p>External interrupt 5. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a48b90e65d400542fd0fecf54ab31da1ea157960af743cc39c125b2164aaf6596f"></a><!-- doxytag: member="IE6_ISR" ref="a48b90e65d400542fd0fecf54ab31da1ea157960af743cc39c125b2164aaf6596f" args="" -->IE6_ISR</em>&nbsp;</td><td>
 <p>External interrupt 6. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a48b90e65d400542fd0fecf54ab31da1ea182f6073e5e71a7a668ed4f4ff751fb1"></a><!-- doxytag: member="USART0_ISR" ref="a48b90e65d400542fd0fecf54ab31da1ea182f6073e5e71a7a668ed4f4ff751fb1" args="" -->USART0_ISR</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a48b90e65d400542fd0fecf54ab31da1eaaa7de12136470fea6854c505d66bf432"></a><!-- doxytag: member="USART1_ISR" ref="a48b90e65d400542fd0fecf54ab31da1eaaa7de12136470fea6854c505d66bf432" args="" -->USART1_ISR</em>&nbsp;</td><td>
 </td></tr>
 </table>
 </dd>
@@ -367,7 +744,7 @@ Enumerations</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 19 2015 10:42:50 for Fx2lib by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 19 2015 10:45:57 for Fx2lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
