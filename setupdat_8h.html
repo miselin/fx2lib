@@ -69,8 +69,8 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHEADER__DSCR.html">HEADER_DSCR</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDEVICE__DSCR.html">DEVICE_DSCR</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCONFIG__DSCR.html">CONFIG_DSCR</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSTRING__DSCR.html">STRING_DSCR</a></td></tr>
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
@@ -84,9 +84,10 @@ Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setupdat_8h.html#ad3334ccdd8b3c6dd820c0c81197eb261">DSCR_DEVQUAL_TYPE</a>&#160;&#160;&#160;6</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setupdat_8h.html#aebeb7e5858a95f6e5c3de99d45132b38">DSCR_OTHERSPD_TYPE</a>&#160;&#160;&#160;7</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setupdat_8h.html#a6719faf45c26f0bba068554b06d734a4">DSCR_DEBUG_TYPE</a>&#160;&#160;&#160;10</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setupdat_8h.html#a718f60b0ec796e17d169fdc850fc52a6">DSCR_BCD</a>&#160;&#160;&#160;2</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setupdat_8h.html#a718f60b0ec796e17d169fdc850fc52a6">DSCR_BCD</a>&#160;&#160;&#160;0x0200</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setupdat_8h.html#a82b6a62f0084b9e5ece6221475a9ceb1">DSCR_DEVICE_LEN</a>&#160;&#160;&#160;18</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setupdat_8h.html#a8d4bace14a270526e1fa93407fc6cab1">DSCR_CONFIG_LEN</a>&#160;&#160;&#160;9</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setupdat_8h.html#aea30b82548b0624f10b6ef8068886c4a">CONFIG_DSCR</a>&#160;&#160;&#160;DSCR_HEAD</td></tr>
 <tr><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setupdat_8h.html#a1133e77bbb4566cd4ccc79915b6ac036">SETUP_DATA</a> { <br/>
@@ -108,8 +109,10 @@ Enumerations</h2></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">__xdata <a class="el" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setupdat_8h.html#a3305f7d92e6bcc98272e19e3032b7b9e">ep_addr</a> (<a class="el" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> ep)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pointer to an endpoint's control/status register.  <a href="#a3305f7d92e6bcc98272e19e3032b7b9e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setupdat_8h.html#ad6bf0b58c902d6fc13d9a0630d95c8a0">handle_setupdata</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setupdat_8h.html#a873d26420c81b22db52bfc53b214e91a">handle_hispeed</a> (<a class="el" href="fx2types_8h.html#a67bb6a3d7ee6a2a5950ce437abbe31c8">BOOL</a> highspeed)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch the descriptor pointer to right descriptor version.  <a href="#a873d26420c81b22db52bfc53b214e91a"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">volatile <a class="el" href="fx2types_8h.html#a67bb6a3d7ee6a2a5950ce437abbe31c8">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setupdat_8h.html#a1cd5203a44c0ff6285dbfccaa3707247">self_powered</a></td></tr>
@@ -191,18 +194,33 @@ VENDOR COMMANDS
   </pre></div> 
 <p>Definition in file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
 </div><hr/><h2>Define Documentation</h2>
-<a class="anchor" id="a718f60b0ec796e17d169fdc850fc52a6"></a><!-- doxytag: member="setupdat.h::DSCR_BCD" ref="a718f60b0ec796e17d169fdc850fc52a6" args="" -->
+<a class="anchor" id="aea30b82548b0624f10b6ef8068886c4a"></a><!-- doxytag: member="setupdat.h::CONFIG_DSCR" ref="aea30b82548b0624f10b6ef8068886c4a" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define <a class="el" href="setupdat_8h.html#a718f60b0ec796e17d169fdc850fc52a6">DSCR_BCD</a>&#160;&#160;&#160;2</td>
+          <td class="memname">#define <a class="el" href="setupdat_8h.html#aea30b82548b0624f10b6ef8068886c4a">CONFIG_DSCR</a>&#160;&#160;&#160;DSCR_HEAD</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00181">181</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
+<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00258">258</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a718f60b0ec796e17d169fdc850fc52a6"></a><!-- doxytag: member="setupdat.h::DSCR_BCD" ref="a718f60b0ec796e17d169fdc850fc52a6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="setupdat_8h.html#a718f60b0ec796e17d169fdc850fc52a6">DSCR_BCD</a>&#160;&#160;&#160;0x0200</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00235">235</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
 
 </div>
 </div>
@@ -217,7 +235,7 @@ VENDOR COMMANDS
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00207">207</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
+<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00257">257</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
 
 </div>
 </div>
@@ -232,7 +250,7 @@ VENDOR COMMANDS
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00174">174</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
+<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00228">228</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
 
 </div>
 </div>
@@ -247,7 +265,7 @@ VENDOR COMMANDS
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00178">178</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
+<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00232">232</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
 
 </div>
 </div>
@@ -262,7 +280,7 @@ VENDOR COMMANDS
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00185">185</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
+<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00254">254</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
 
 </div>
 </div>
@@ -277,7 +295,7 @@ VENDOR COMMANDS
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00173">173</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
+<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00227">227</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
 
 </div>
 </div>
@@ -292,7 +310,7 @@ VENDOR COMMANDS
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00176">176</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
+<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00230">230</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
 
 </div>
 </div>
@@ -307,7 +325,7 @@ VENDOR COMMANDS
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00177">177</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
+<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00231">231</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
 
 </div>
 </div>
@@ -322,7 +340,7 @@ VENDOR COMMANDS
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00175">175</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
+<p>Definition at line <a class="el" href="setupdat_8h_source.html#l00229">229</a> of file <a class="el" href="setupdat_8h_source.html">setupdat.h</a>.</p>
 
 </div>
 </div>
@@ -453,7 +471,14 @@ VENDOR COMMANDS
       </table>
 </div>
 <div class="memdoc">
-<p>returns the control/status register for an end point (bit 7=1 for IN, 0 for out </p>
+
+<p>Get pointer to an endpoint's control/status register. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Endpoint</td><td>number (lower bits) and direction (bit 7). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -471,10 +496,38 @@ VENDOR COMMANDS
       </table>
 </div>
 <div class="memdoc">
-<p>For devices to properly handle usb hispeed (This is if your descriptor has high speed and full speed versions and it should since the fx2lp is a high speed capable device ) enable both USBRESET and HISPEED interrupts and call this function to switch the descriptors. This function uses a __critical section to switch the descriptors and is safe to call from the hispeed or reset interrupt. See <a class="el" href="fw_8c-example.html">fw::c</a></p>
+
+<p>Switch the descriptor pointer to right descriptor version. </p>
+<p>This function switches the descriptor pointer between the high speed and full speed descriptor versions. To use this function; </p>
+<ul>
+<li>Your descriptors should have both versions. </li>
+<li>Enable both USBRESET and HISPEED interrupts. </li>
+<li>In your ISR for these functions call this method; </li>
+<li>* highspeed = FALSE for USBRESET </li>
+<li>* highspeed = TRUE for HISPEED</li>
+</ul>
+<p>This function is safe to call both inside an ISR and outside because it disable interrupts while operating (__critical).</p>
+<div class="fragment"><pre class="fragment"> <span class="keywordtype">void</span> <a class="code" href="autovector_8h.html#afca3446b82251f73daea6cec673f3bff">usbreset_isr</a>() __interrupt <a class="code" href="autovector_8h.html#abc626159c878a9a277f47d71a79e7c34a9bd47dd8ceb10c7f768c7362a5334e07">USBRESET_ISR</a> {
+     <a class="code" href="setupdat_8h.html#a873d26420c81b22db52bfc53b214e91a" title="Switch the descriptor pointer to right descriptor version.">handle_hispeed</a>(<a class="code" href="fx2types_8h.html#acfa04764efb00fc412359554dd70fff2aa1e095cc966dbecf6a0d8aad75348d1a">FALSE</a>);
+     <a class="code" href="autovector_8h.html#a955ce72b3d57ceb582d1755e4e221401">CLEAR_USBRESET</a>();
+ }
+ <span class="keywordtype">void</span> <a class="code" href="autovector_8h.html#a63249880100d58019a835a9ae8a4fe14">hispeed_isr</a>() __interrupt <a class="code" href="autovector_8h.html#abc626159c878a9a277f47d71a79e7c34a3674d45bfc937779b77f6494ec203c32">HISPEED_ISR</a> {
+     <a class="code" href="setupdat_8h.html#a873d26420c81b22db52bfc53b214e91a" title="Switch the descriptor pointer to right descriptor version.">handle_hispeed</a>(<a class="code" href="fx2types_8h.html#acfa04764efb00fc412359554dd70fff2aa82764c3079aea4e60c80e45befbb839">TRUE</a>);
+     <a class="code" href="autovector_8h.html#ad0056e85bd6c6a0fdfe2729fe3fc9586">CLEAR_HISPEED</a>();
+ }
+
+ <span class="keywordtype">void</span> main() {
+     <a class="code" href="autovector_8h.html#ad0961fc983212f47b9303b01ae07abdf">ENABLE_USBRESET</a>();
+     <a class="code" href="autovector_8h.html#a9da28432c254ba886f731fb95d7ffeda">ENABLE_HISPEED</a>();
+ }
+</pre></div><p>See <a class="el" href="fw_8c-example.html">fw::c</a> for full example.</p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">highspeed</td><td>Call the function with highspeed = TRUE if calling because the highspeed interrupt was received. If calling from usbreset, call with highspeed=false </td></tr>
+    <tr><td class="paramname">highspeed</td><td>Use high speed descriptor? <ul>
+<li>TRUE, use high speed descriptor. </li>
+<li>FALSE, use full speed descriptor. </li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -533,7 +586,7 @@ VENDOR COMMANDS
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 19 2015 11:01:20 for Fx2lib by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 19 2015 11:51:33 for Fx2lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

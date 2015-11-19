@@ -104,78 +104,98 @@
 <a name="l00137"></a>00137 } <a class="code" href="setupdat_8h.html#a1133e77bbb4566cd4ccc79915b6ac036">SETUP_DATA</a>;
 <a name="l00138"></a>00138 
 <a name="l00139"></a>00139 
-<a name="l00144"></a>00144 __xdata <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>* <a class="code" href="setupdat_8h.html#a3305f7d92e6bcc98272e19e3032b7b9e">ep_addr</a>(<a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> ep);
-<a name="l00145"></a>00145 
-<a name="l00146"></a>00146 <span class="comment">/*</span>
-<a name="l00147"></a>00147 <span class="comment"> You can call this function directly if you are polling</span>
-<a name="l00148"></a>00148 <span class="comment"> for setup data in your main loop.</span>
-<a name="l00149"></a>00149 <span class="comment"> You can also use the usbjt and enable the sudav isr</span>
-<a name="l00150"></a>00150 <span class="comment"> and call the function from withing the sudav isr routine</span>
-<a name="l00151"></a>00151 <span class="comment">*/</span>
-<a name="l00152"></a>00152 <span class="keywordtype">void</span> <a class="code" href="setupdat_8h.html#ad6bf0b58c902d6fc13d9a0630d95c8a0">handle_setupdata</a>();
-<a name="l00153"></a>00153 
-<a name="l00154"></a>00154 
-<a name="l00169"></a>00169 <span class="keywordtype">void</span> <a class="code" href="setupdat_8h.html#a873d26420c81b22db52bfc53b214e91a">handle_hispeed</a>( <a class="code" href="fx2types_8h.html#a67bb6a3d7ee6a2a5950ce437abbe31c8">BOOL</a> highspeed );
-<a name="l00170"></a>00170 
-<a name="l00171"></a>00171 
-<a name="l00172"></a>00172 <span class="comment">/* descriptor types */</span>
-<a name="l00173"></a><a class="code" href="setupdat_8h.html#adebcba58007794ba84e58fcd2eb589c2">00173</a> <span class="preprocessor">#define DSCR_DEVICE_TYPE 1</span>
-<a name="l00174"></a><a class="code" href="setupdat_8h.html#a26f8f841c0b4e050036616e2b380d9c1">00174</a> <span class="preprocessor"></span><span class="preprocessor">#define DSCR_CONFIG_TYPE 2</span>
-<a name="l00175"></a><a class="code" href="setupdat_8h.html#a3c93878383b9f7605c7feb2d5753b0f8">00175</a> <span class="preprocessor"></span><span class="preprocessor">#define DSCR_STRING_TYPE 3</span>
-<a name="l00176"></a><a class="code" href="setupdat_8h.html#ad3334ccdd8b3c6dd820c0c81197eb261">00176</a> <span class="preprocessor"></span><span class="preprocessor">#define DSCR_DEVQUAL_TYPE 6</span>
-<a name="l00177"></a><a class="code" href="setupdat_8h.html#aebeb7e5858a95f6e5c3de99d45132b38">00177</a> <span class="preprocessor"></span><span class="preprocessor">#define DSCR_OTHERSPD_TYPE 7</span>
-<a name="l00178"></a><a class="code" href="setupdat_8h.html#a6719faf45c26f0bba068554b06d734a4">00178</a> <span class="preprocessor"></span><span class="preprocessor">#define DSCR_DEBUG_TYPE 10</span>
-<a name="l00179"></a>00179 <span class="preprocessor"></span>
-<a name="l00180"></a>00180 <span class="comment">/* usb spec 2 */</span>
-<a name="l00181"></a><a class="code" href="setupdat_8h.html#a718f60b0ec796e17d169fdc850fc52a6">00181</a> <span class="preprocessor">#define DSCR_BCD 2</span>
-<a name="l00182"></a>00182 <span class="preprocessor"></span>
-<a name="l00183"></a>00183 
-<a name="l00184"></a>00184 <span class="comment">/* device descriptor */</span>
-<a name="l00185"></a><a class="code" href="setupdat_8h.html#a82b6a62f0084b9e5ece6221475a9ceb1">00185</a> <span class="preprocessor">#define DSCR_DEVICE_LEN 18</span>
-<a name="l00186"></a>00186 <span class="preprocessor"></span>
-<a name="l00187"></a><a class="code" href="structDEVICE__DSCR.html">00187</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
-<a name="l00188"></a><a class="code" href="structDEVICE__DSCR.html#a1930466345f90a845a593326cf111940">00188</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a1930466345f90a845a593326cf111940">dsc_len</a>; <span class="comment">// descriptor length (18 for this )</span>
-<a name="l00189"></a><a class="code" href="structDEVICE__DSCR.html#a9ffef70b4e7726abcd3c6d778031d4e4">00189</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a9ffef70b4e7726abcd3c6d778031d4e4">dsc_type</a>; <span class="comment">// dscr type</span>
-<a name="l00190"></a><a class="code" href="structDEVICE__DSCR.html#a1fcad0e1013722d548cb1e2ec077103e">00190</a>     <a class="code" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a> <a class="code" href="structDEVICE__DSCR.html#a1fcad0e1013722d548cb1e2ec077103e">bcd</a>; <span class="comment">// bcd</span>
-<a name="l00191"></a><a class="code" href="structDEVICE__DSCR.html#a2bce04fd430d38e77da86717e1d55e53">00191</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a2bce04fd430d38e77da86717e1d55e53">dev_class</a>; <span class="comment">// device class</span>
-<a name="l00192"></a><a class="code" href="structDEVICE__DSCR.html#a2b50db2093c81a7d6c7c84662a8302b5">00192</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a2b50db2093c81a7d6c7c84662a8302b5">dev_subclass</a>; <span class="comment">// sub class</span>
-<a name="l00193"></a><a class="code" href="structDEVICE__DSCR.html#a40197cc727671d42eeec0b33048d0ded">00193</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a40197cc727671d42eeec0b33048d0ded">dev_protocol</a>; <span class="comment">// sub sub class</span>
-<a name="l00194"></a><a class="code" href="structDEVICE__DSCR.html#a4038b3098bfe6e864ab5bb1222f84e46">00194</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a4038b3098bfe6e864ab5bb1222f84e46">max_pkt</a>; <span class="comment">// max packet size</span>
-<a name="l00195"></a><a class="code" href="structDEVICE__DSCR.html#af52c3f5cb8dd8bc32aea3d697c5424d8">00195</a>     <a class="code" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a> <a class="code" href="structDEVICE__DSCR.html#af52c3f5cb8dd8bc32aea3d697c5424d8">vendor_id</a>;
-<a name="l00196"></a><a class="code" href="structDEVICE__DSCR.html#af43eb23bc38f35d158b46f0f77beab4c">00196</a>     <a class="code" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a> <a class="code" href="structDEVICE__DSCR.html#af43eb23bc38f35d158b46f0f77beab4c">product_id</a>;
-<a name="l00197"></a><a class="code" href="structDEVICE__DSCR.html#a1b195b3e29006cd737d83a14e0104c77">00197</a>     <a class="code" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a> <a class="code" href="structDEVICE__DSCR.html#a1b195b3e29006cd737d83a14e0104c77">dev_version</a>; <span class="comment">// product version id</span>
-<a name="l00198"></a><a class="code" href="structDEVICE__DSCR.html#aa349eb5a8bdde7a6fbcb7a6bbda5383b">00198</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#aa349eb5a8bdde7a6fbcb7a6bbda5383b">idx_manstr</a>; <span class="comment">//  manufacturer string index</span>
-<a name="l00199"></a><a class="code" href="structDEVICE__DSCR.html#ae2ab8f7818598f26afbb6f1774c11a12">00199</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#ae2ab8f7818598f26afbb6f1774c11a12">idx_devstr</a>; <span class="comment">// product string index</span>
-<a name="l00200"></a><a class="code" href="structDEVICE__DSCR.html#a683b01c52f0cc0d012d2575811082a99">00200</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a683b01c52f0cc0d012d2575811082a99">idx_serstr</a>; <span class="comment">// serial number index</span>
-<a name="l00201"></a><a class="code" href="structDEVICE__DSCR.html#aa82a7e3f795888d2f881fb3699b77c4c">00201</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#aa82a7e3f795888d2f881fb3699b77c4c">num_configs</a>; <span class="comment">// number of configurations</span>
-<a name="l00202"></a>00202         
-<a name="l00203"></a>00203 } <a class="code" href="structDEVICE__DSCR.html">DEVICE_DSCR</a>;
-<a name="l00204"></a>00204 
-<a name="l00205"></a>00205 
-<a name="l00206"></a>00206 <span class="comment">/* config descriptor */</span>
-<a name="l00207"></a><a class="code" href="setupdat_8h.html#a8d4bace14a270526e1fa93407fc6cab1">00207</a> <span class="preprocessor">#define DSCR_CONFIG_LEN 9</span>
-<a name="l00208"></a><a class="code" href="structCONFIG__DSCR.html">00208</a> <span class="preprocessor"></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{
-<a name="l00209"></a><a class="code" href="structCONFIG__DSCR.html#a9f0371147a1187fd507a5ff39a16fe33">00209</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structCONFIG__DSCR.html#a9f0371147a1187fd507a5ff39a16fe33">dsc_len</a>; <span class="comment">// 9 for this one</span>
-<a name="l00210"></a><a class="code" href="structCONFIG__DSCR.html#ac87c2f76d990833c224cffe4e833d8e6">00210</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structCONFIG__DSCR.html#ac87c2f76d990833c224cffe4e833d8e6">dsc_type</a>; <span class="comment">// dscr type</span>
-<a name="l00211"></a>00211     
-<a name="l00212"></a>00212 } <a class="code" href="structCONFIG__DSCR.html">CONFIG_DSCR</a>;
-<a name="l00213"></a>00213 
-<a name="l00214"></a>00214 <span class="comment">/* string descriptor */</span>
-<a name="l00215"></a><a class="code" href="structSTRING__DSCR.html">00215</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
-<a name="l00216"></a><a class="code" href="structSTRING__DSCR.html#aa786f68e3484ebb2edc553f3e4525dd9">00216</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structSTRING__DSCR.html#aa786f68e3484ebb2edc553f3e4525dd9">dsc_len</a>;
-<a name="l00217"></a><a class="code" href="structSTRING__DSCR.html#a27842be4f46bd3e5b18c7aaa5a247544">00217</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structSTRING__DSCR.html#a27842be4f46bd3e5b18c7aaa5a247544">dsc_type</a>;
-<a name="l00218"></a><a class="code" href="structSTRING__DSCR.html#ab57e56cb0def7a3f7be0100c749e104c">00218</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structSTRING__DSCR.html#ab57e56cb0def7a3f7be0100c749e104c">pstr</a>;
-<a name="l00219"></a>00219 } <a class="code" href="structSTRING__DSCR.html">STRING_DSCR</a>;
-<a name="l00220"></a>00220 
-<a name="l00221"></a>00221 
-<a name="l00222"></a>00222 
-<a name="l00223"></a>00223 
-<a name="l00224"></a>00224 <span class="preprocessor">#endif</span>
+<a name="l00145"></a>00145 __xdata <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>* <a class="code" href="setupdat_8h.html#a3305f7d92e6bcc98272e19e3032b7b9e" title="Get pointer to an endpoint&#39;s control/status register.">ep_addr</a>(<a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> ep);
+<a name="l00146"></a>00146 
+<a name="l00147"></a>00147 <span class="comment">/*</span>
+<a name="l00148"></a>00148 <span class="comment"> * \brief Handle the &quot;setup data&quot; USB requests.</span>
+<a name="l00149"></a>00149 <span class="comment"> *</span>
+<a name="l00150"></a>00150 <span class="comment"> * This function should *not* be called inside an ISR (as it calls</span>
+<a name="l00151"></a>00151 <span class="comment"> * non-reentrant functions). Instead you should set a flag inside the ISR and</span>
+<a name="l00152"></a>00152 <span class="comment"> * then call this function ASAP as part of your main loop.</span>
+<a name="l00153"></a>00153 <span class="comment"> *</span>
+<a name="l00154"></a>00154 <span class="comment"> * \code</span>
+<a name="l00155"></a>00155 <span class="comment"> * volatile __bit dosud=FALSE;</span>
+<a name="l00156"></a>00156 <span class="comment"> * void sudav_isr() __interrupt SUDAV_ISR {</span>
+<a name="l00157"></a>00157 <span class="comment"> *     CLEAR_SUDAV();</span>
+<a name="l00158"></a>00158 <span class="comment"> *     if(dosud) {</span>
+<a name="l00159"></a>00159 <span class="comment"> *         // Indicate error</span>
+<a name="l00160"></a>00160 <span class="comment"> *     }</span>
+<a name="l00161"></a>00161 <span class="comment"> *     dosud=TRUE;</span>
+<a name="l00162"></a>00162 <span class="comment"> * }</span>
+<a name="l00163"></a>00163 <span class="comment"> *</span>
+<a name="l00164"></a>00164 <span class="comment"> * void main() {</span>
+<a name="l00165"></a>00165 <span class="comment"> *     // Other init code</span>
+<a name="l00166"></a>00166 <span class="comment"> *     ENABLE_SUDAV();</span>
+<a name="l00167"></a>00167 <span class="comment"> *     EA=1; // Enable interrupts</span>
+<a name="l00168"></a>00168 <span class="comment"> *</span>
+<a name="l00169"></a>00169 <span class="comment"> *     while(TRUE) {</span>
+<a name="l00170"></a>00170 <span class="comment"> *         if(dosud) { // Check flag</span>
+<a name="l00171"></a>00171 <span class="comment"> *             handle_setupdata();</span>
+<a name="l00172"></a>00172 <span class="comment"> *             dosud=FALSE;</span>
+<a name="l00173"></a>00173 <span class="comment"> *         }</span>
+<a name="l00174"></a>00174 <span class="comment"> *         // Other loop code</span>
+<a name="l00175"></a>00175 <span class="comment"> *     }</span>
+<a name="l00176"></a>00176 <span class="comment"> * }</span>
+<a name="l00177"></a>00177 <span class="comment"> * \endcode</span>
+<a name="l00178"></a>00178 <span class="comment"> */</span>
+<a name="l00179"></a>00179 <span class="keywordtype">void</span> <a class="code" href="setupdat_8h.html#ad6bf0b58c902d6fc13d9a0630d95c8a0">handle_setupdata</a>();
+<a name="l00180"></a>00180 
+<a name="l00181"></a>00181 
+<a name="l00218"></a>00218 <span class="keywordtype">void</span> <a class="code" href="setupdat_8h.html#a873d26420c81b22db52bfc53b214e91a" title="Switch the descriptor pointer to right descriptor version.">handle_hispeed</a>( <a class="code" href="fx2types_8h.html#a67bb6a3d7ee6a2a5950ce437abbe31c8">BOOL</a> highspeed );
+<a name="l00219"></a>00219 
+<a name="l00220"></a>00220 <span class="comment">/* Descriptor header */</span>
+<a name="l00221"></a><a class="code" href="structHEADER__DSCR.html">00221</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
+<a name="l00222"></a><a class="code" href="structHEADER__DSCR.html#aecffbe67d5567e24fbddba0af9db7e4e">00222</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structHEADER__DSCR.html#aecffbe67d5567e24fbddba0af9db7e4e">dsc_len</a>;
+<a name="l00223"></a><a class="code" href="structHEADER__DSCR.html#a3fb270f06cdbffb2aaa7a1c674784d73">00223</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structHEADER__DSCR.html#a3fb270f06cdbffb2aaa7a1c674784d73">dsc_type</a>;
+<a name="l00224"></a>00224 } <a class="code" href="structHEADER__DSCR.html">HEADER_DSCR</a>;
+<a name="l00225"></a>00225 
+<a name="l00226"></a>00226 <span class="comment">/* descriptor types */</span>
+<a name="l00227"></a><a class="code" href="setupdat_8h.html#adebcba58007794ba84e58fcd2eb589c2">00227</a> <span class="preprocessor">#define DSCR_DEVICE_TYPE 1</span>
+<a name="l00228"></a><a class="code" href="setupdat_8h.html#a26f8f841c0b4e050036616e2b380d9c1">00228</a> <span class="preprocessor"></span><span class="preprocessor">#define DSCR_CONFIG_TYPE 2</span>
+<a name="l00229"></a><a class="code" href="setupdat_8h.html#a3c93878383b9f7605c7feb2d5753b0f8">00229</a> <span class="preprocessor"></span><span class="preprocessor">#define DSCR_STRING_TYPE 3</span>
+<a name="l00230"></a><a class="code" href="setupdat_8h.html#ad3334ccdd8b3c6dd820c0c81197eb261">00230</a> <span class="preprocessor"></span><span class="preprocessor">#define DSCR_DEVQUAL_TYPE 6</span>
+<a name="l00231"></a><a class="code" href="setupdat_8h.html#aebeb7e5858a95f6e5c3de99d45132b38">00231</a> <span class="preprocessor"></span><span class="preprocessor">#define DSCR_OTHERSPD_TYPE 7</span>
+<a name="l00232"></a><a class="code" href="setupdat_8h.html#a6719faf45c26f0bba068554b06d734a4">00232</a> <span class="preprocessor"></span><span class="preprocessor">#define DSCR_DEBUG_TYPE 10</span>
+<a name="l00233"></a>00233 <span class="preprocessor"></span>
+<a name="l00234"></a>00234 <span class="comment">/* USB version 2.0 */</span>
+<a name="l00235"></a><a class="code" href="setupdat_8h.html#a718f60b0ec796e17d169fdc850fc52a6">00235</a> <span class="preprocessor">#define DSCR_BCD 0x0200</span>
+<a name="l00236"></a>00236 <span class="preprocessor"></span>
+<a name="l00237"></a>00237 <span class="comment">/* Device descriptor */</span>
+<a name="l00238"></a><a class="code" href="structDEVICE__DSCR.html">00238</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
+<a name="l00239"></a><a class="code" href="structDEVICE__DSCR.html#a1930466345f90a845a593326cf111940">00239</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a1930466345f90a845a593326cf111940">dsc_len</a>; <span class="comment">// descriptor length (18 for this )</span>
+<a name="l00240"></a><a class="code" href="structDEVICE__DSCR.html#a9ffef70b4e7726abcd3c6d778031d4e4">00240</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a9ffef70b4e7726abcd3c6d778031d4e4">dsc_type</a>; <span class="comment">// dscr type</span>
+<a name="l00241"></a><a class="code" href="structDEVICE__DSCR.html#a1fcad0e1013722d548cb1e2ec077103e">00241</a>     <a class="code" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a> <a class="code" href="structDEVICE__DSCR.html#a1fcad0e1013722d548cb1e2ec077103e">bcd</a>; <span class="comment">// bcd</span>
+<a name="l00242"></a><a class="code" href="structDEVICE__DSCR.html#a2bce04fd430d38e77da86717e1d55e53">00242</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a2bce04fd430d38e77da86717e1d55e53">dev_class</a>; <span class="comment">// device class</span>
+<a name="l00243"></a><a class="code" href="structDEVICE__DSCR.html#a2b50db2093c81a7d6c7c84662a8302b5">00243</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a2b50db2093c81a7d6c7c84662a8302b5">dev_subclass</a>; <span class="comment">// sub class</span>
+<a name="l00244"></a><a class="code" href="structDEVICE__DSCR.html#a40197cc727671d42eeec0b33048d0ded">00244</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a40197cc727671d42eeec0b33048d0ded">dev_protocol</a>; <span class="comment">// sub sub class</span>
+<a name="l00245"></a><a class="code" href="structDEVICE__DSCR.html#a4038b3098bfe6e864ab5bb1222f84e46">00245</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a4038b3098bfe6e864ab5bb1222f84e46">max_pkt</a>; <span class="comment">// max packet size</span>
+<a name="l00246"></a><a class="code" href="structDEVICE__DSCR.html#af52c3f5cb8dd8bc32aea3d697c5424d8">00246</a>     <a class="code" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a> <a class="code" href="structDEVICE__DSCR.html#af52c3f5cb8dd8bc32aea3d697c5424d8">vendor_id</a>;
+<a name="l00247"></a><a class="code" href="structDEVICE__DSCR.html#af43eb23bc38f35d158b46f0f77beab4c">00247</a>     <a class="code" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a> <a class="code" href="structDEVICE__DSCR.html#af43eb23bc38f35d158b46f0f77beab4c">product_id</a>;
+<a name="l00248"></a><a class="code" href="structDEVICE__DSCR.html#a1b195b3e29006cd737d83a14e0104c77">00248</a>     <a class="code" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a> <a class="code" href="structDEVICE__DSCR.html#a1b195b3e29006cd737d83a14e0104c77">dev_version</a>; <span class="comment">// product version id</span>
+<a name="l00249"></a><a class="code" href="structDEVICE__DSCR.html#aa349eb5a8bdde7a6fbcb7a6bbda5383b">00249</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#aa349eb5a8bdde7a6fbcb7a6bbda5383b">idx_manstr</a>; <span class="comment">//  manufacturer string index</span>
+<a name="l00250"></a><a class="code" href="structDEVICE__DSCR.html#ae2ab8f7818598f26afbb6f1774c11a12">00250</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#ae2ab8f7818598f26afbb6f1774c11a12">idx_devstr</a>; <span class="comment">// product string index</span>
+<a name="l00251"></a><a class="code" href="structDEVICE__DSCR.html#a683b01c52f0cc0d012d2575811082a99">00251</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#a683b01c52f0cc0d012d2575811082a99">idx_serstr</a>; <span class="comment">// serial number index</span>
+<a name="l00252"></a><a class="code" href="structDEVICE__DSCR.html#aa82a7e3f795888d2f881fb3699b77c4c">00252</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structDEVICE__DSCR.html#aa82a7e3f795888d2f881fb3699b77c4c">num_configs</a>; <span class="comment">// number of configurations</span>
+<a name="l00253"></a>00253 } <a class="code" href="structDEVICE__DSCR.html">DEVICE_DSCR</a>;
+<a name="l00254"></a><a class="code" href="setupdat_8h.html#a82b6a62f0084b9e5ece6221475a9ceb1">00254</a> <span class="preprocessor">#define DSCR_DEVICE_LEN 18</span>
+<a name="l00255"></a>00255 <span class="preprocessor"></span>
+<a name="l00256"></a>00256 <span class="comment">/* Config descriptor  */</span>
+<a name="l00257"></a><a class="code" href="setupdat_8h.html#a8d4bace14a270526e1fa93407fc6cab1">00257</a> <span class="preprocessor">#define DSCR_CONFIG_LEN 9</span>
+<a name="l00258"></a><a class="code" href="setupdat_8h.html#aea30b82548b0624f10b6ef8068886c4a">00258</a> <span class="preprocessor"></span><span class="preprocessor">#define CONFIG_DSCR DSCR_HEAD</span>
+<a name="l00259"></a>00259 <span class="preprocessor"></span>
+<a name="l00260"></a>00260 <span class="comment">/* String descriptor */</span>
+<a name="l00261"></a><a class="code" href="structSTRING__DSCR.html">00261</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
+<a name="l00262"></a><a class="code" href="structSTRING__DSCR.html#aa786f68e3484ebb2edc553f3e4525dd9">00262</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structSTRING__DSCR.html#aa786f68e3484ebb2edc553f3e4525dd9">dsc_len</a>;
+<a name="l00263"></a><a class="code" href="structSTRING__DSCR.html#a27842be4f46bd3e5b18c7aaa5a247544">00263</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structSTRING__DSCR.html#a27842be4f46bd3e5b18c7aaa5a247544">dsc_type</a>;
+<a name="l00264"></a><a class="code" href="structSTRING__DSCR.html#ab57e56cb0def7a3f7be0100c749e104c">00264</a>     <a class="code" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="code" href="structSTRING__DSCR.html#ab57e56cb0def7a3f7be0100c749e104c">pstr</a>;
+<a name="l00265"></a>00265 } <a class="code" href="structSTRING__DSCR.html">STRING_DSCR</a>;
+<a name="l00266"></a>00266 
+<a name="l00267"></a>00267 <span class="preprocessor">#endif</span>
 </pre></div></div><!-- contents -->
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 19 2015 11:01:20 for Fx2lib by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 19 2015 11:51:32 for Fx2lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
