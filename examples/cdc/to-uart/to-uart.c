@@ -50,7 +50,7 @@ void cdcuser_receive_data(BYTE* data, WORD length) {
 
 // Serial port 0 transmit or receive interrupt
 // *MUST* Clear TI and RI bits.
-void ISR_USART0(void) __interrupt TI_0_ISR __critical {
+void ISR_USART0(void) __interrupt TI_0_ISR {
 	if (RI) {
 		RI=0;
 		if (!cdc_can_send()) {
