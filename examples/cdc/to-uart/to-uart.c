@@ -1,4 +1,5 @@
 /*
+// FIXME: Why are these all commented out?
 #include <stdio.h>
 
 #include <fx2regs.h>
