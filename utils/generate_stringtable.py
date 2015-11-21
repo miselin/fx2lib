@@ -5,17 +5,7 @@ Generate a C file containing strings in the format needed by the USB descriptors
 
 Put the following in your Makefile
 -------------------------------------------
-descriptors_strings.h: descriptors_string_table.py descriptors.strings
-        @python3 descriptors_string_table.py --header < descriptors.strings > descriptors_strings.h
-
-descriptors_strings.inc: descriptors_string_table.py descriptors.strings
-        @python3 descriptors_string_table.py --cfile < descriptors.strings > descriptors_strings.inc
-
-descriptors.h: date.h descriptors_strings.h
-descriptors.c: descriptors_strings.inc
-
-check-descriptors: descriptors.c
-        gcc -I../../third_party/fx2lib/include descriptors.c
+include fx2-cdesc.mk
 -------------------------------------------
 """
 
@@ -29,10 +19,10 @@ if sys.argv[1] == "--header":
 #include <linux/ch9.h>
 #include <linux/ch9-extra.h>
 
-#ifndef DESCRIPTORS_STRING_TABLE_H_
-#define DESCRIPTORS_STRING_TABLE_H_
+#ifndef DESCRIPTORS_STRINGTABLE_H_
+#define DESCRIPTORS_STRINGTABLE_H_
 
-struct usb_descriptors_strings {
+struct usb_descriptors_stringtable {
 	struct usb_string_lang {
 		__u8 bLength;
 		__u8 bDescriptorType;
@@ -48,12 +38,12 @@ struct usb_descriptors_strings {
 	print("""\
 };
 
-#endif // DESCRIPTORS_STRING_TABLE_H_
+#endif // DESCRIPTORS_STRINGTABLE_H_
 """)
 
 if sys.argv[1] == "--cfile":
 	print("""\
-	.strings = {
+	.stringtable = {
 		// English language header
 		.language = {
 			.bLength = sizeof(struct usb_string_lang),

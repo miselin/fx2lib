@@ -1,30 +1,7 @@
 
-#include <stddef.h>
-#include <linux/ch9.h>
-#include <linux/ch9-extra.h>
+#include "descriptors.h"
 
-
-struct usb_section {
-	struct usb_config_descriptor config;
-	struct usb_interface_descriptor interface;
-	struct usb_endpoint_descriptor endpoints[2];
-};
-
-struct usb_str {
-	__u8  bLength;
-	__u8  bDescriptorType;
-
-	__le16 wData[];		/* UTF-16LE encoded */
-};
-
-struct usb_descriptor {
-	struct usb_device_descriptor device;
-	struct usb_qualifier_descriptor qualifier;
-	struct usb_section highspeed;
-	struct usb_section fullspeed;
-};
-
-__xdata struct usb_descriptor descriptor = {
+__code __at(DSCR_AREA) struct usb_descriptors code_descriptors = {
 	.device = {
 		.bLength		= USB_DT_DEVICE_SIZE,
 		.bDescriptorType	= USB_DT_DEVICE,
@@ -36,10 +13,10 @@ __xdata struct usb_descriptor descriptor = {
 		.idVendor		= 0x04B4,
 		.idProduct		= 0x1004,
 		.bcdDevice		= 0x0001,
-		.iManufacturer		= 1,
-		.iProduct		= 2,
-		.iSerialNumber		= 0,
-		.bNumConfigurations	= 1
+		.iManufacturer		= USB_STRING_INDEX(0),
+		.iProduct		= USB_STRING_INDEX(1),
+		.iSerialNumber		= USB_STRING_INDEX_NONE,
+		.bNumConfigurations	= 1,
 	},
 	.qualifier = {
 		.bLength		= USB_DT_DEVICE_QUALIFIER_SIZE,
@@ -56,7 +33,7 @@ __xdata struct usb_descriptor descriptor = {
 		.config = {
 			.bLength		= USB_DT_CONFIG_SIZE,
 			.bDescriptorType	= USB_DT_CONFIG,
-			.wTotalLength		= sizeof(descriptor.highspeed),
+			.wTotalLength		= sizeof(descriptors.highspeed),
 			.bNumInterfaces		= 1,
 			.bConfigurationValue	= 1,
 			.iConfiguration		= 0,
@@ -71,8 +48,8 @@ __xdata struct usb_descriptor descriptor = {
 			.bNumEndpoints		= 2,
 			.bInterfaceClass	= USB_CLASS_VENDOR_SPEC,
 			.bInterfaceSubClass	= USB_SUBCLASS_VENDOR_SPEC,
-			.bInterfaceProtocol	= 0xff,
-			.iInterface		= 3,
+			.bInterfaceProtocol	= USB_PROTOCOL_VENDOR_SPEC,
+			.iInterface		= USB_STRING_INDEX(2),
 		},
 		.endpoints = {
 			{
@@ -97,7 +74,7 @@ __xdata struct usb_descriptor descriptor = {
 		.config = {
 			.bLength		= USB_DT_CONFIG_SIZE,
 			.bDescriptorType	= USB_DT_CONFIG,
-			.wTotalLength		= sizeof(descriptor.fullspeed),
+			.wTotalLength		= sizeof(descriptors.fullspeed),
 			.bNumInterfaces		= 1,
 			.bConfigurationValue	= 1,
 			.iConfiguration		= 0,
@@ -134,4 +111,5 @@ __xdata struct usb_descriptor descriptor = {
 			},
 		},
 	},
+	#include "build/descriptors_stringtable.inc"
 };
