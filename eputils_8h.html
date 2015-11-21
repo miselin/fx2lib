@@ -54,12 +54,15 @@
 <div class="header">
   <div class="summary">
 <a href="#define-members">Defines</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">include/eputils.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="fx2types_8h_source.html">fx2types.h</a>&quot;</code><br/>
+<div class="textblock"><code>#include &lt;assert.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="fx2types_8h_source.html">fx2types.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>&quot;</code><br/>
 </div>
 <p><a href="eputils_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -70,16 +73,162 @@ Defines</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the toggle on an endpoint. To use this, the endpoint needs bit 8 to be IN=1,OUT=0.  <a href="#ad90cba91e0fd1c55615dca273db19897"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#ad8318eef8b2220e22299ac7a6b38928d">RESETFIFO</a>(ep)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a7729f704ab06f8b4d37f9bb376dc3b32">RESETFIFOS</a>()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a7b22b0f43a4955832decddf9a4f9edc8">ep0_load_sudptr</a>(src)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a34cd64c66874d4edfda53230e0b4abda">ep0_mode</a>(mode_data, mode_length)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a55fbfd1544e3c6342b039552d101783e">ep0_busywait</a>()&#160;&#160;&#160;while (<a class="el" href="fx2regs_8h.html#ac388980ba054798bae7093e84f868434">EP0CS</a> &amp; <a class="el" href="fx2regs_8h.html#a6b7b0585d0c72bb03c6f12d790b08bc1">bmEPBUSY</a>) printf(&quot;w\n&quot;);</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a9187fa543fda2983b218a124461a7dec">ep0_load_length</a>(len)&#160;&#160;&#160;<a class="el" href="fx2macros_8h.html#a97cd991318e045efc553cfd586edd90e">LOADWORD</a>(EP0BC, len);</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a97eb74ba5414c1a34f12eebc7e577fad">ep0_arm</a>()&#160;&#160;&#160;<a class="el" href="eputils_8h.html#a9187fa543fda2983b218a124461a7dec">ep0_load_length</a>(0);</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a9ef844674d91549bf3b80ea79a4d8d63">ep0_get_length</a>()&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a5a209c673854111b30ed858665f637fa">EP0BCL</a></td></tr>
+<tr><td colspan="2"><h2><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a9b0e0fea3422f317ac8e74c4b5a4c06d">ep0_mode_data</a> { <a class="el" href="eputils_8h.html#a9b0e0fea3422f317ac8e74c4b5a4c06dacafca42435c2119512852cf63ec94aac">EP0_DATA_AUTO</a> =  0, 
+<a class="el" href="eputils_8h.html#a9b0e0fea3422f317ac8e74c4b5a4c06da3b6fb489f2b2a54a5b390ee01d2fed4f">EP0_DATA_MANUAL</a> =  1
+ }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a4b9c5f4e81239aec0d5042e22cce80a2">ep0_mode_length</a> { <a class="el" href="eputils_8h.html#a4b9c5f4e81239aec0d5042e22cce80a2ae08db36adcc21e451d2fd76f4def6f47">EP0_LENGTH_AUTO</a> =  1, 
+<a class="el" href="eputils_8h.html#a4b9c5f4e81239aec0d5042e22cce80a2abdecd409f15781fad8e341c78c65ae38">EP0_LENGTH_MANUAL</a> =  0
+ }</td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a2b50132b062f8315102d372298d34025">readep0</a> (<a class="el" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *dst, <a class="el" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a> len)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#ad7600f5e741c71126e7e50a11c998154">writeep0</a> (<a class="el" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *src, <a class="el" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a> len)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a6dce88b53aead03eb8303e42791d08bf">ep0_send_auto</a> (__xdata <a class="el" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *src, <a class="el" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a> len)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a01627eec53717a562e34d089f8a5e464">ep0_send_byte</a> (<a class="el" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> data)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a42e67d7d04688c6242a70d0f20a76a08">ep0_send_word</a> (<a class="el" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a> data)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eputils_8h.html#a28944faf898ffd50d5705d8b4a09e44f">ep0_recv</a> ()</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Functions and macros for working with endpoints. </p>
 
 <p>Definition in file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
 </div><hr/><h2>Define Documentation</h2>
+<a class="anchor" id="a97eb74ba5414c1a34f12eebc7e577fad"></a><!-- doxytag: member="eputils.h::ep0_arm" ref="a97eb74ba5414c1a34f12eebc7e577fad" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="eputils_8h.html#a97eb74ba5414c1a34f12eebc7e577fad">ep0_arm</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="eputils_8h.html#a9187fa543fda2983b218a124461a7dec">ep0_load_length</a>(0);</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="eputils_8h_source.html#l00130">130</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a55fbfd1544e3c6342b039552d101783e"></a><!-- doxytag: member="eputils.h::ep0_busywait" ref="a55fbfd1544e3c6342b039552d101783e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="eputils_8h.html#a55fbfd1544e3c6342b039552d101783e">ep0_busywait</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;while (<a class="el" href="fx2regs_8h.html#ac388980ba054798bae7093e84f868434">EP0CS</a> &amp; <a class="el" href="fx2regs_8h.html#a6b7b0585d0c72bb03c6f12d790b08bc1">bmEPBUSY</a>) printf(&quot;w\n&quot;);</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="eputils_8h_source.html#l00124">124</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9ef844674d91549bf3b80ea79a4d8d63"></a><!-- doxytag: member="eputils.h::ep0_get_length" ref="a9ef844674d91549bf3b80ea79a4d8d63" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="eputils_8h.html#a9ef844674d91549bf3b80ea79a4d8d63">ep0_get_length</a></td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a5a209c673854111b30ed858665f637fa">EP0BCL</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="eputils_8h_source.html#l00134">134</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9187fa543fda2983b218a124461a7dec"></a><!-- doxytag: member="eputils.h::ep0_load_length" ref="a9187fa543fda2983b218a124461a7dec" args="(len)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="eputils_8h.html#a9187fa543fda2983b218a124461a7dec">ep0_load_length</a></td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">len</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="fx2macros_8h.html#a97cd991318e045efc553cfd586edd90e">LOADWORD</a>(EP0BC, len);</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="eputils_8h_source.html#l00127">127</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7b22b0f43a4955832decddf9a4f9edc8"></a><!-- doxytag: member="eputils.h::ep0_load_sudptr" ref="a7b22b0f43a4955832decddf9a4f9edc8" args="(src)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="eputils_8h.html#a7b22b0f43a4955832decddf9a4f9edc8">ep0_load_sudptr</a></td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">src</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Value:</b><div class="fragment"><pre class="fragment">assert( \
+                (((<a class="code" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a>)src) &lt;= 0x3FFF) || \
+                (((<a class="code" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a>)src) &gt;= 0xE000 &amp;&amp; ((<a class="code" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a>)src) &lt;= 0xE1FF)); \
+        assert(!(<a class="code" href="fx2macros_8h.html#afd4920e8c5160c14b59bdf75030d2077">LSB</a>(src) &amp; <a class="code" href="fx2types_8h.html#a02d8b0231ce4684998ec7c876d1adf23">bmBIT0</a>)); \
+        LOADWORD(SUDPTR, src);
+</pre></div>
+<p>Definition at line <a class="el" href="eputils_8h_source.html#l00096">96</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a34cd64c66874d4edfda53230e0b4abda"></a><!-- doxytag: member="eputils.h::ep0_mode" ref="a34cd64c66874d4edfda53230e0b4abda" args="(mode_data, mode_length)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="eputils_8h.html#a34cd64c66874d4edfda53230e0b4abda">ep0_mode</a></td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">mode_data, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">mode_length&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Value:</b><div class="fragment"><pre class="fragment">assert(!(mode_data &amp; mode_length)); \
+        SUDPTRCTL = mode_data | mode_length;
+</pre></div>
+<p>Definition at line <a class="el" href="eputils_8h_source.html#l00120">120</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ad8318eef8b2220e22299ac7a6b38928d"></a><!-- doxytag: member="eputils.h::RESETFIFO" ref="ad8318eef8b2220e22299ac7a6b38928d" args="(ep)" -->
 <div class="memitem">
 <div class="memproto">
@@ -99,7 +248,7 @@ Functions</h2></td></tr>
                        FIFORESET=0x00; SYNCDELAY;}
 </pre></div><p>RESETFIFO should not use 0x80|epnum for IN endpoints Only use 0x02, 0x04, 0x06, 0x06 for ep value </p>
 
-<p>Definition at line <a class="el" href="eputils_8h_source.html#l00063">63</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
+<p>Definition at line <a class="el" href="eputils_8h_source.html#l00066">66</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
 
 </div>
 </div>
@@ -124,7 +273,7 @@ Functions</h2></td></tr>
                      FIFORESET=0x00; SYNCDELAY;}
 </pre></div><p>Quickly reset all endpoint FIFOS. </p>
 
-<p>Definition at line <a class="el" href="eputils_8h_source.html#l00069">69</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
+<p>Definition at line <a class="el" href="eputils_8h_source.html#l00072">72</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
 
 </div>
 </div>
@@ -152,7 +301,7 @@ Functions</h2></td></tr>
 </pre></div>
 <p>Reset the toggle on an endpoint. To use this, the endpoint needs bit 8 to be IN=1,OUT=0. </p>
 
-<p>Definition at line <a class="el" href="eputils_8h_source.html#l00050">50</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
+<p>Definition at line <a class="el" href="eputils_8h_source.html#l00053">53</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
 
 </div>
 </div>
@@ -174,11 +323,135 @@ Functions</h2></td></tr>
 <div class="fragment"><pre class="fragment"><span class="preprocessor">  #define SYNCDELAY SYNCDELAY4 // SYNCDELAY4 from delay.h</span>
 </pre></div><p> Stalls EP0. </p>
 
-<p>Definition at line <a class="el" href="eputils_8h_source.html#l00044">44</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
+<p>Definition at line <a class="el" href="eputils_8h_source.html#l00047">47</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Enumeration Type Documentation</h2>
+<a class="anchor" id="a9b0e0fea3422f317ac8e74c4b5a4c06d"></a><!-- doxytag: member="eputils.h::ep0_mode_data" ref="a9b0e0fea3422f317ac8e74c4b5a4c06d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="eputils_8h.html#a9b0e0fea3422f317ac8e74c4b5a4c06d">ep0_mode_data</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a9b0e0fea3422f317ac8e74c4b5a4c06dacafca42435c2119512852cf63ec94aac"></a><!-- doxytag: member="EP0_DATA_AUTO" ref="a9b0e0fea3422f317ac8e74c4b5a4c06dacafca42435c2119512852cf63ec94aac" args="" -->EP0_DATA_AUTO</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a9b0e0fea3422f317ac8e74c4b5a4c06da3b6fb489f2b2a54a5b390ee01d2fed4f"></a><!-- doxytag: member="EP0_DATA_MANUAL" ref="a9b0e0fea3422f317ac8e74c4b5a4c06da3b6fb489f2b2a54a5b390ee01d2fed4f" args="" -->EP0_DATA_MANUAL</em>&nbsp;</td><td>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="eputils_8h_source.html#l00111">111</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4b9c5f4e81239aec0d5042e22cce80a2"></a><!-- doxytag: member="eputils.h::ep0_mode_length" ref="a4b9c5f4e81239aec0d5042e22cce80a2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="eputils_8h.html#a4b9c5f4e81239aec0d5042e22cce80a2">ep0_mode_length</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a4b9c5f4e81239aec0d5042e22cce80a2ae08db36adcc21e451d2fd76f4def6f47"></a><!-- doxytag: member="EP0_LENGTH_AUTO" ref="a4b9c5f4e81239aec0d5042e22cce80a2ae08db36adcc21e451d2fd76f4def6f47" args="" -->EP0_LENGTH_AUTO</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a4b9c5f4e81239aec0d5042e22cce80a2abdecd409f15781fad8e341c78c65ae38"></a><!-- doxytag: member="EP0_LENGTH_MANUAL" ref="a4b9c5f4e81239aec0d5042e22cce80a2abdecd409f15781fad8e341c78c65ae38" args="" -->EP0_LENGTH_MANUAL</em>&nbsp;</td><td>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="eputils_8h_source.html#l00115">115</a> of file <a class="el" href="eputils_8h_source.html">eputils.h</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a28944faf898ffd50d5705d8b4a09e44f"></a><!-- doxytag: member="eputils.h::ep0_recv" ref="a28944faf898ffd50d5705d8b4a09e44f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="el" href="eputils_8h.html#a28944faf898ffd50d5705d8b4a09e44f">ep0_recv</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6dce88b53aead03eb8303e42791d08bf"></a><!-- doxytag: member="eputils.h::ep0_send_auto" ref="a6dce88b53aead03eb8303e42791d08bf" args="(__xdata BYTE *src, WORD len)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="eputils_8h.html#a6dce88b53aead03eb8303e42791d08bf">ep0_send_auto</a> </td>
+          <td>(</td>
+          <td class="paramtype">__xdata <a class="el" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a>&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a01627eec53717a562e34d089f8a5e464"></a><!-- doxytag: member="eputils.h::ep0_send_byte" ref="a01627eec53717a562e34d089f8a5e464" args="(BYTE data)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="eputils_8h.html#a01627eec53717a562e34d089f8a5e464">ep0_send_byte</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="fx2types_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a42e67d7d04688c6242a70d0f20a76a08"></a><!-- doxytag: member="eputils.h::ep0_send_word" ref="a42e67d7d04688c6242a70d0f20a76a08" args="(WORD data)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="eputils_8h.html#a42e67d7d04688c6242a70d0f20a76a08">ep0_send_word</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a>&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a2b50132b062f8315102d372298d34025"></a><!-- doxytag: member="eputils.h::readep0" ref="a2b50132b062f8315102d372298d34025" args="(BYTE *dst, WORD len)" -->
 <div class="memitem">
 <div class="memproto">
@@ -239,7 +512,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 19 2015 11:51:33 for Fx2lib by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 21 2015 07:23:37 for Fx2lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

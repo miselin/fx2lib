@@ -86,54 +86,58 @@
 <a name="l00032"></a><a class="code" href="fx2macros_8h.html#a57a94b74c6d77c9a7efe40f21109e8b8">00032</a> <span class="preprocessor"></span><span class="preprocessor">#define LSW(dword) (WORD)(dword &amp; 0xffff)</span>
 <a name="l00033"></a><a class="code" href="fx2macros_8h.html#abf8a7f25298757a620b44d3557ffe21f">00033</a> <span class="preprocessor"></span><span class="preprocessor">#define MAKEDWORD(msw,lsw) (((DWORD)msw &lt;&lt; 16) | lsw)</span>
 <a name="l00034"></a>00034 <span class="preprocessor"></span>
-<a name="l00035"></a>00035 <span class="comment">// clock stuff</span>
-<a name="l00036"></a>00036 
-<a name="l00040"></a><a class="code" href="fx2macros_8h.html#a67f3f766a011dd62ac7cae6dfb8b32fe">00040</a> <span class="keyword">typedef</span> <span class="keyword">enum</span> { <a class="code" href="fx2macros_8h.html#a67f3f766a011dd62ac7cae6dfb8b32fea590cd0398b6e370e7a20c5cd6e63a46d">CLK_12M</a> =0, <a class="code" href="fx2macros_8h.html#a67f3f766a011dd62ac7cae6dfb8b32fea9bd9dbe9dba0955eae04087aa42e1d5d">CLK_24M</a>, <a class="code" href="fx2macros_8h.html#a67f3f766a011dd62ac7cae6dfb8b32feaad55ec0a3c2b236a8ef306e941f1f845">CLK_48M</a>} <a class="code" href="fx2macros_8h.html#a67f3f766a011dd62ac7cae6dfb8b32fe" title="Used for getting and setting the CPU clock speed.">CLK_SPD</a>;
-<a name="l00041"></a>00041 
-<a name="l00045"></a><a class="code" href="fx2macros_8h.html#a1378ed2a8477a2d685ef27c0e52f86f1">00045</a> <span class="preprocessor">#define CPUFREQ (CLK_SPD)((CPUCS &amp; bmCLKSPD) &gt;&gt; 3)</span>
-<a name="l00046"></a>00046 <span class="preprocessor"></span>
-<a name="l00050"></a><a class="code" href="fx2macros_8h.html#a85439206834e5f5b2b948c6084e18232">00050</a> <span class="preprocessor">#define SETCPUFREQ(SPD) CPUCS = (CPUCS &amp; ~bmCLKSPD) | (SPD &lt;&lt; 3)</span>
-<a name="l00051"></a>00051 <span class="preprocessor"></span>
-<a name="l00063"></a><a class="code" href="fx2macros_8h.html#a3cad0f9b3c40159bd2fbd7f5e60f2fff">00063</a> <span class="preprocessor">#define XTAL (CPUFREQ==CLK_12M ? 12000000L :\</span>
-<a name="l00064"></a>00064 <span class="preprocessor">              CPUFREQ==CLK_24M ? 24000000L : 48000000L)</span>
-<a name="l00065"></a>00065 <span class="preprocessor"></span>
-<a name="l00066"></a>00066 
-<a name="l00077"></a><a class="code" href="fx2macros_8h.html#a97933115ae5b995bfc5a26bafbdc1757">00077</a> <span class="preprocessor">#define I2CFREQ ((I2CTL &amp; bm400KHZ) ? 400000L : 100000L)</span>
-<a name="l00078"></a>00078 <span class="preprocessor"></span>
-<a name="l00079"></a>00079 
-<a name="l00080"></a><a class="code" href="fx2macros_8h.html#a902090fa2ab6c9183c9e2601fe4e0ff3">00080</a> <span class="preprocessor">#define IFFREQ (IFCONFIG &amp; bm3048MHZ ? 48000000L : 30000000L)</span>
-<a name="l00081"></a><a class="code" href="fx2macros_8h.html#abcee6ece550dc037f99db450db931c0c">00081</a> <span class="preprocessor"></span><span class="preprocessor">#define SETIF30MHZ() IFCONFIG &amp;= ~bm3048MHZ</span>
-<a name="l00082"></a><a class="code" href="fx2macros_8h.html#a6f4c7f95cde83fc21322e73b90cc963b">00082</a> <span class="preprocessor"></span><span class="preprocessor">#define SETIF48MHZ() IFCONFIG |= bm3048MHZ</span>
-<a name="l00083"></a>00083 <span class="preprocessor"></span>
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085 <span class="comment">// eeprom stuff</span>
-<a name="l00086"></a><a class="code" href="fx2macros_8h.html#a441deb04d229d907c2ce42b5c1524507">00086</a> <span class="preprocessor">#define EEPROM_TWO_BYTE (I2CS &amp; bmBIT4)</span>
-<a name="l00087"></a>00087 <span class="preprocessor"></span>
-<a name="l00099"></a><a class="code" href="fx2macros_8h.html#a50c853fb6c32dd700e856ba26d97d07f">00099</a> <span class="preprocessor">#define RENUMERATE_UNCOND() USBCS|=bmDISCON|bmRENUM;delay(1500);USBCS&amp;=~bmDISCON</span>
-<a name="l00100"></a>00100 <span class="preprocessor"></span>
-<a name="l00104"></a><a class="code" href="fx2macros_8h.html#a90cc977065675579e3898ff2bbd9093a">00104</a> <span class="preprocessor">#define RENUMERATE() if(!(USBCS&amp;bmRENUM)) {USBCS|=bmDISCON|bmRENUM;delay(1500);USBCS &amp;= ~bmDISCON;}</span>
-<a name="l00105"></a>00105 <span class="preprocessor"></span>
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107 <span class="comment">// interrupts</span>
-<a name="l00108"></a>00108 <span class="comment">// USB interrupts are in usbjt.h</span>
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112 
-<a name="l00116"></a><a class="code" href="fx2macros_8h.html#ab09d9c4b289a1e6a81c456ed8c84a4e1">00116</a> <span class="preprocessor">#define HISPEED (USBCS&amp;bmHSM)</span>
-<a name="l00117"></a>00117 <span class="preprocessor"></span>
+<a name="l00038"></a><a class="code" href="fx2macros_8h.html#a97cd991318e045efc553cfd586edd90e">00038</a> <span class="preprocessor">#define LOADWORD(reg, value) \</span>
+<a name="l00039"></a>00039 <span class="preprocessor">    reg ## H = MSB(value); \</span>
+<a name="l00040"></a>00040 <span class="preprocessor">    reg ## L = LSB(value);</span>
+<a name="l00041"></a>00041 <span class="preprocessor"></span>
+<a name="l00042"></a>00042 <span class="comment">// clock stuff</span>
+<a name="l00043"></a>00043 
+<a name="l00047"></a><a class="code" href="fx2macros_8h.html#a67f3f766a011dd62ac7cae6dfb8b32fe">00047</a> <span class="keyword">typedef</span> <span class="keyword">enum</span> { <a class="code" href="fx2macros_8h.html#a67f3f766a011dd62ac7cae6dfb8b32fea590cd0398b6e370e7a20c5cd6e63a46d">CLK_12M</a> =0, <a class="code" href="fx2macros_8h.html#a67f3f766a011dd62ac7cae6dfb8b32fea9bd9dbe9dba0955eae04087aa42e1d5d">CLK_24M</a>, <a class="code" href="fx2macros_8h.html#a67f3f766a011dd62ac7cae6dfb8b32feaad55ec0a3c2b236a8ef306e941f1f845">CLK_48M</a>} <a class="code" href="fx2macros_8h.html#a67f3f766a011dd62ac7cae6dfb8b32fe" title="Used for getting and setting the CPU clock speed.">CLK_SPD</a>;
+<a name="l00048"></a>00048 
+<a name="l00052"></a><a class="code" href="fx2macros_8h.html#a1378ed2a8477a2d685ef27c0e52f86f1">00052</a> <span class="preprocessor">#define CPUFREQ (CLK_SPD)((CPUCS &amp; bmCLKSPD) &gt;&gt; 3)</span>
+<a name="l00053"></a>00053 <span class="preprocessor"></span>
+<a name="l00057"></a><a class="code" href="fx2macros_8h.html#a85439206834e5f5b2b948c6084e18232">00057</a> <span class="preprocessor">#define SETCPUFREQ(SPD) CPUCS = (CPUCS &amp; ~bmCLKSPD) | (SPD &lt;&lt; 3)</span>
+<a name="l00058"></a>00058 <span class="preprocessor"></span>
+<a name="l00070"></a><a class="code" href="fx2macros_8h.html#a3cad0f9b3c40159bd2fbd7f5e60f2fff">00070</a> <span class="preprocessor">#define XTAL (CPUFREQ==CLK_12M ? 12000000L :\</span>
+<a name="l00071"></a>00071 <span class="preprocessor">              CPUFREQ==CLK_24M ? 24000000L : 48000000L)</span>
+<a name="l00072"></a>00072 <span class="preprocessor"></span>
+<a name="l00073"></a>00073 
+<a name="l00084"></a><a class="code" href="fx2macros_8h.html#a97933115ae5b995bfc5a26bafbdc1757">00084</a> <span class="preprocessor">#define I2CFREQ ((I2CTL &amp; bm400KHZ) ? 400000L : 100000L)</span>
+<a name="l00085"></a>00085 <span class="preprocessor"></span>
+<a name="l00086"></a>00086 
+<a name="l00087"></a><a class="code" href="fx2macros_8h.html#a902090fa2ab6c9183c9e2601fe4e0ff3">00087</a> <span class="preprocessor">#define IFFREQ (IFCONFIG &amp; bm3048MHZ ? 48000000L : 30000000L)</span>
+<a name="l00088"></a><a class="code" href="fx2macros_8h.html#abcee6ece550dc037f99db450db931c0c">00088</a> <span class="preprocessor"></span><span class="preprocessor">#define SETIF30MHZ() IFCONFIG &amp;= ~bm3048MHZ</span>
+<a name="l00089"></a><a class="code" href="fx2macros_8h.html#a6f4c7f95cde83fc21322e73b90cc963b">00089</a> <span class="preprocessor"></span><span class="preprocessor">#define SETIF48MHZ() IFCONFIG |= bm3048MHZ</span>
+<a name="l00090"></a>00090 <span class="preprocessor"></span>
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 <span class="comment">// eeprom stuff</span>
+<a name="l00093"></a><a class="code" href="fx2macros_8h.html#a441deb04d229d907c2ce42b5c1524507">00093</a> <span class="preprocessor">#define EEPROM_TWO_BYTE (I2CS &amp; bmBIT4)</span>
+<a name="l00094"></a>00094 <span class="preprocessor"></span>
+<a name="l00106"></a><a class="code" href="fx2macros_8h.html#a50c853fb6c32dd700e856ba26d97d07f">00106</a> <span class="preprocessor">#define RENUMERATE_UNCOND() USBCS|=bmDISCON|bmRENUM;delay(1500);USBCS&amp;=~bmDISCON</span>
+<a name="l00107"></a>00107 <span class="preprocessor"></span>
+<a name="l00111"></a><a class="code" href="fx2macros_8h.html#a90cc977065675579e3898ff2bbd9093a">00111</a> <span class="preprocessor">#define RENUMERATE() if(!(USBCS&amp;bmRENUM)) {USBCS|=bmDISCON|bmRENUM;delay(1500);USBCS &amp;= ~bmDISCON;}</span>
+<a name="l00112"></a>00112 <span class="preprocessor"></span>
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114 <span class="comment">// interrupts</span>
+<a name="l00115"></a>00115 <span class="comment">// USB interrupts are in usbjt.h</span>
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117 
 <a name="l00118"></a>00118 
 <a name="l00119"></a>00119 
-<a name="l00120"></a>00120 
-<a name="l00124"></a><a class="code" href="fx2macros_8h.html#a8228b1a75679036ba2b6e59538fbd227">00124</a> <span class="preprocessor">#define REMOTE_WAKEUP() (((WAKEUPCS &amp; bmWU) &amp;&amp; (WAKEUPCS &amp; bmWUEN)) || ((WAKEUPCS &amp; bmWU2) &amp;&amp; (WAKEUPCS &amp; bmWU2EN)))</span>
-<a name="l00125"></a>00125 <span class="preprocessor"></span>
+<a name="l00123"></a><a class="code" href="fx2macros_8h.html#ab09d9c4b289a1e6a81c456ed8c84a4e1">00123</a> <span class="preprocessor">#define HISPEED (USBCS&amp;bmHSM)</span>
+<a name="l00124"></a>00124 <span class="preprocessor"></span>
+<a name="l00125"></a>00125 
 <a name="l00126"></a>00126 
-<a name="l00127"></a>00127 <span class="preprocessor">#endif</span>
+<a name="l00127"></a>00127 
+<a name="l00131"></a><a class="code" href="fx2macros_8h.html#a8228b1a75679036ba2b6e59538fbd227">00131</a> <span class="preprocessor">#define REMOTE_WAKEUP() (((WAKEUPCS &amp; bmWU) &amp;&amp; (WAKEUPCS &amp; bmWUEN)) || ((WAKEUPCS &amp; bmWU2) &amp;&amp; (WAKEUPCS &amp; bmWU2EN)))</span>
+<a name="l00132"></a>00132 <span class="preprocessor"></span>
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 <span class="preprocessor">#endif</span>
 </pre></div></div><!-- contents -->
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 19 2015 11:51:32 for Fx2lib by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 21 2015 07:23:37 for Fx2lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

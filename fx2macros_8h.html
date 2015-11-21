@@ -72,6 +72,7 @@ Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2macros_8h.html#a44dd48f69faebb092e2201877e1d0075">MSW</a>(dword)&#160;&#160;&#160;(<a class="el" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a>)((dword &gt;&gt; 16) &amp; 0xffff)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2macros_8h.html#a57a94b74c6d77c9a7efe40f21109e8b8">LSW</a>(dword)&#160;&#160;&#160;(<a class="el" href="fx2types_8h.html#ad2baa11c897721ff6f14b452b547f9bc">WORD</a>)(dword &amp; 0xffff)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2macros_8h.html#abf8a7f25298757a620b44d3557ffe21f">MAKEDWORD</a>(msw, lsw)&#160;&#160;&#160;(((<a class="el" href="fx2types_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a>)msw &lt;&lt; 16) | lsw)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2macros_8h.html#a97cd991318e045efc553cfd586edd90e">LOADWORD</a>(reg, value)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2macros_8h.html#a1378ed2a8477a2d685ef27c0e52f86f1">CPUFREQ</a>&#160;&#160;&#160;(<a class="el" href="fx2macros_8h.html#a67f3f766a011dd62ac7cae6dfb8b32fe">CLK_SPD</a>)((<a class="el" href="fx2regs_8h.html#a11804ee5ffc674ab5b85f8ebf62b01db">CPUCS</a> &amp; <a class="el" href="fx2regs_8h.html#a179468f3ad54fb4cfd7bd020ed7a0c46">bmCLKSPD</a>) &gt;&gt; 3)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates to a CLK_SPD enum.  <a href="#a1378ed2a8477a2d685ef27c0e52f86f1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fx2macros_8h.html#a85439206834e5f5b2b948c6084e18232">SETCPUFREQ</a>(SPD)&#160;&#160;&#160;<a class="el" href="fx2regs_8h.html#a11804ee5ffc674ab5b85f8ebf62b01db">CPUCS</a> = (<a class="el" href="fx2regs_8h.html#a11804ee5ffc674ab5b85f8ebf62b01db">CPUCS</a> &amp; ~<a class="el" href="fx2regs_8h.html#a179468f3ad54fb4cfd7bd020ed7a0c46">bmCLKSPD</a>) | (SPD &lt;&lt; 3)</td></tr>
@@ -118,7 +119,7 @@ Enumerations</h2></td></tr>
 
 <p>Evaluates to a CLK_SPD enum. </p>
 
-<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00045">45</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00052">52</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
 
 </div>
 </div>
@@ -133,7 +134,7 @@ Enumerations</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00086">86</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00093">93</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
 
 </div>
 </div>
@@ -150,7 +151,7 @@ Enumerations</h2></td></tr>
 
 <p>TRUE if the FX2 has transitioned to high speed on the USB bus.. </p>
 
-<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00116">116</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00123">123</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
 
 </div>
 </div>
@@ -172,7 +173,7 @@ Enumerations</h2></td></tr>
 <li>100000L </li>
 </ul>
 
-<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00077">77</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00084">84</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
 
 </div>
 </div>
@@ -187,7 +188,39 @@ Enumerations</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00080">80</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00087">87</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a97cd991318e045efc553cfd586edd90e"></a><!-- doxytag: member="fx2macros.h::LOADWORD" ref="a97cd991318e045efc553cfd586edd90e" args="(reg, value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="fx2macros_8h.html#a97cd991318e045efc553cfd586edd90e">LOADWORD</a></td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">reg, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">value&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Value:</b><div class="fragment"><pre class="fragment">reg ## H = <a class="code" href="fx2macros_8h.html#a8c9798ce66c0519a1e9001cf101da30f">MSB</a>(value); \
+    reg ## L = <a class="code" href="fx2macros_8h.html#afd4920e8c5160c14b59bdf75030d2077">LSB</a>(value);
+</pre></div><p>Load a word register (such as the data pointers), high byte then low byte. </p>
+
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00038">38</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
 
 </div>
 </div>
@@ -342,7 +375,7 @@ Enumerations</h2></td></tr>
 <p>Evaluates to TRUE if a remote wakeup event has occurred. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="fw_8c-example.html#a22">fw.c</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00124">124</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00131">131</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
 
 </div>
 </div>
@@ -363,7 +396,7 @@ Enumerations</h2></td></tr>
 <p>Cause the device to disconnect and reconnect to the USB bus. This macro doesn't do anything if the firmware is loaded from an eeprom. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="fw_8c-example.html#a11">fw.c</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00104">104</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00111">111</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
 
 </div>
 </div>
@@ -384,7 +417,7 @@ Enumerations</h2></td></tr>
 <p>Cause the device to disconnect and reconnect to USB. This macro unconditionally renumerates the device no matter how the firmware is loaded. </p>
 <p><b>NOTE</b> Windows really doesn't like this if the firmware is loaded from an eeprom. You'll see information messages about the device not working properly. On the other hand, if you are changing the device descriptor, e.g., the vendor and product id, when downloading firmware to the device, you'll need to use this macro instead of the standard RENUMERATE macro. </p>
 
-<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00099">99</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00106">106</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
 
 </div>
 </div>
@@ -406,7 +439,7 @@ Enumerations</h2></td></tr>
 <p>Sets the cpu to operate at a specific clock speed. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="fw_8c-example.html#a1">fw.c</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00050">50</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00057">57</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
 
 </div>
 </div>
@@ -424,7 +457,7 @@ Enumerations</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00081">81</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00088">88</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
 
 </div>
 </div>
@@ -442,7 +475,7 @@ Enumerations</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00082">82</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00089">89</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
 
 </div>
 </div>
@@ -467,7 +500,7 @@ Enumerations</h2></td></tr>
 <li>48000000L </li>
 </ul>
 
-<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00063">63</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00070">70</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
 
 </div>
 </div>
@@ -495,7 +528,7 @@ Enumerations</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00040">40</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
+<p>Definition at line <a class="el" href="fx2macros_8h_source.html#l00047">47</a> of file <a class="el" href="fx2macros_8h_source.html">fx2macros.h</a>.</p>
 
 </div>
 </div>
@@ -503,7 +536,7 @@ Enumerations</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 19 2015 11:51:33 for Fx2lib by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 21 2015 07:23:37 for Fx2lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
