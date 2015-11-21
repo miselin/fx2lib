@@ -63,7 +63,7 @@ CC = sdcc -mmcs51 \
 	$(INT2JT)
 
 
-.PHONY: all ihx iic bix load clean clean-all
+.PHONY: all ihx iic bix load check-int2jt print-size clean clean-all
 
 all: ihx
 ihx: $(BUILDDIR)/$(BASENAME).ihx
@@ -95,6 +95,19 @@ $(BUILDDIR)/$(BASENAME).iic: $(BUILDDIR)/$(BASENAME).ihx
 
 load: $(BUILDDIR)/$(BASENAME).bix
 	fx2load -v $(VID) -p $(PID) $(BUILDDIR)/$(BASENAME).bix
+
+$(BUILDDIR)/$(BASENAME).map: $(BUILDDIR)/$(BASENAME).ihx
+
+print-size: $(BUILDDIR)/$(BASENAME).map
+	@grep "bytes (" $< | sort | uniq
+
+check-int2jt: $(BUILDDIR)/$(BASENAME).map
+	@export REQUESTED=$(shell grep "INT2JT=" $< | sed -e's/INT2JT=//'); \
+	export ACTUAL=$(shell grep "C:.*s_INT2JT" build/bulkloop.map | sed -e's/C: *0*\([^ ]*\)  s_INT2JT.*/0x\1/' | tr A-Z a-z ); \
+	if [ "$$REQUESTED" != "$$ACTUAL" ]; then \
+		echo "INT2JT at $$ACTUAL but requested $$REQUESTED"; \
+		exit 1; \
+	fi
 
 clean:
 	rm -f $(foreach ext, a51 asm ihx lnk lk lst map mem rel rst rest sym adb cdb bix, $(BUILDDIR)/*.${ext})
