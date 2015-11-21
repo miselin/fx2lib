@@ -22,6 +22,9 @@
 
 #include "fx2types.h"
 
+#ifndef SOFTSERIAL_H
+#define SOFTSERIAL_H
+
 #ifndef SOFT_USART_TX
 __sbit __at 0xB3 SOFT_USART_TX; //0xB7 USART; // Port D7
 #endif
@@ -30,3 +33,5 @@ void soft_sio0_init( DWORD baud_rate ) __critical ; // baud_rate max should be 5
 
 void soft_putchar(char c);
 char soft_getchar();
+
+#endif // SOFTSERIAL_H
