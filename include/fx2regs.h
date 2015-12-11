@@ -132,6 +132,9 @@ __xdata __at 0xE67A volatile BYTE I2CTL;  ///< I2C Control
 __xdata __at 0xE67B volatile BYTE XAUTODAT1;  ///< Autoptr1 MOVX access
 __xdata __at 0xE67C volatile BYTE XAUTODAT2;  ///< Autoptr2 MOVX access
 
+__code __at 0xE67B volatile BYTE CAUTODAT1;  ///< Hole caused by Autoptr1 usage
+__code __at 0xE67C volatile BYTE CAUTODAT2;  ///< Hole caused by Autoptr2 usage
+
 #define EXTAUTODAT1 XAUTODAT1
 #define EXTAUTODAT2 XAUTODAT2
 
@@ -280,6 +283,12 @@ __sfr __at 0x82 DPL;
 __sfr __at 0x83 DPH;
 __sfr __at 0x84 DPL1;
 __sfr __at 0x85 DPH1;
+
+#define DP0L DPL
+#define DP0H DPH
+#define DP1L DPL1
+#define DP1H DPH1
+
 __sfr __at 0x86 DPS;
 __sfr __at 0x87 PCON;
 __sfr __at 0x88 TCON;
@@ -324,10 +333,15 @@ __sfr __at 0x98 SCON0;
          __sbit __at 0x98+7 SM0;
 __sfr __at 0x99 SBUF0;
 
-__sfr __at 0x9A AUTOPTRH1; 
+__sfr __at 0x9A AUTOPTRH1;
 __sfr __at 0x9B AUTOPTRL1; 
 __sfr __at 0x9D AUTOPTRH2;
 __sfr __at 0x9E AUTOPTRL2; 
+
+#define AUTOPTR1H AUTOPTRH1
+#define AUTOPTR1L AUTOPTRL1
+#define AUTOPTR2H AUTOPTRH2
+#define AUTOPTR2L AUTOPTRL2
 
 __sfr __at 0xA0 IOC;
          /*  IOC  */
@@ -640,5 +654,10 @@ __sfr __at 0xF8 EIP; // EIP Bit Values differ from Reg320
 #define bmIE4           bmBIT6
 #define bmI2CINT        bmBIT5
 #define bmUSBNT         bmBIT4
+
+/* Autopointer setup (AUTOPTRSETUP) config */
+#define bmAPTR2INC	bmBIT2
+#define bmAPTR1INC	bmBIT1
+#define bmAPTREN	bmBIT0
 
 #endif   /* FX2REGS_H */

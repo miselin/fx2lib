@@ -28,6 +28,9 @@
 #define LSB(addr) (BYTE)((WORD)(addr) & 0xff)
 #define MAKEWORD(msb,lsb) (((WORD)msb << 8) | lsb)
 
+#define MSBC(constant) (BYTE)(((WORD)(addr) >> 8) & 0xff)
+#define LSBC(constant) (BYTE)((WORD)(addr) & 0xff)
+
 #define MSW(dword) (WORD)((dword >> 16) & 0xffff)
 #define LSW(dword) (WORD)(dword & 0xffff)
 #define MAKEDWORD(msw,lsw) (((DWORD)msw << 16) | lsw)
