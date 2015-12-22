@@ -1,4 +1,4 @@
-DIRS=to-uart
+DIRS=loopback to-uart
      
 .PHONY: dirs $(DIRS) clean
      

@@ -1,4 +1,5 @@
-#include "cdc.h"
+// This file is included from ../common/main.c
+// -----------------------------------------------------------------------
 
 BOOL cdcuser_set_line_rate(DWORD baud_rate) {
 	return TRUE;

@@ -1,8 +1,8 @@
 FX2LIBDIR=../../../
 BASENAME = cdc-acm-to-uart
 SOURCES=../common/main.c ../common/cdc.c
-DEPS=../common/cdc.h ../common/cdc-config.h
-INCLUDES=../common
+DEPS=../common/cdc.h ../common/cdc-config.h main-custom.c
+INCLUDES=../common -I ./
 A51_SOURCES=../common/dscr.a51
 PID=0x1004
 
