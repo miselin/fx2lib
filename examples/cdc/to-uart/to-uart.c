@@ -1,31 +1,7 @@
-/*
-#include <stdio.h>
-
-#include <fx2regs.h>
-#include <fx2macros.h>
-#include <serial.h>
-#include <delay.h>
-#include <autovector.h>
-#include <lights.h>
-#include <setupdat.h>
-#include <eputils.h>
-
-#include "cdc.h"
-
-#define SYNCDELAY SYNCDELAY4
-#define REARMVAL 0x80
-#define REARM() EP2BCL=REARMVAL
-
-#include <fx2regs.h>
-#include <fx2macros.h>
-#include <serial.h>
-
-#include "cdc.h"
-*/
+// This file is included from ../common/main.c
+// -----------------------------------------------------------------------
 
 #include <fx2ints.h>
-
-// -----------------------------------------------------------------------
 
 BOOL cdcuser_set_line_rate(DWORD baud_rate) {
         if (baud_rate > 115200 || baud_rate < 2400)
