@@ -282,27 +282,73 @@ _string0:
 string0end:
 ; add more strings here
 
+; Manufacture String - Numato
 _string1:
 	.db string1end-_string1
 	.db DSCR_STRING_TYPE
-	.ascii 'H'
+	.ascii 'N'
 	.db 0
-	.ascii 'i'
+	.ascii 'u'
+	.db 0
+	.ascii 'm'
+	.db 0
+	.ascii 'a'
+	.db 0
+	.ascii 't'
+	.db 0
+	.ascii 'o'
 	.db 0
 string1end:
 
+; Product String - Opsis (CDC Serial Mode)
 _string2:
 	.db string2end-_string2
 	.db DSCR_STRING_TYPE
-	.ascii 'T'
+	.ascii 'O'
 	.db 0
-	.ascii 'h'
+	.ascii 'p'
+	.db 0
+	.ascii 's'
+	.db 0
+	.ascii 'i'
+	.db 0
+	.ascii 's'
+	.db 0
+	.ascii ' '
+	.db 0
+	.ascii '('
+	.db 0
+	.ascii 'C'
+	.db 0
+	.ascii 'D'
+	.db 0
+	.ascii 'C'
+	.db 0
+	.ascii ' '
+	.db 0
+	.ascii 'S'
 	.db 0
 	.ascii 'e'
 	.db 0
 	.ascii 'r'
 	.db 0
+	.ascii 'i'
+	.db 0
+	.ascii 'a'
+	.db 0
+	.ascii 'l'
+	.db 0
+	.ascii ' '
+	.db 0
+	.ascii 'M'
+	.db 0
+	.ascii 'o'
+	.db 0
+	.ascii 'd'
+	.db 0
 	.ascii 'e'
+	.db 0
+	.ascii ')'
 	.db 0
 string2end:
 
