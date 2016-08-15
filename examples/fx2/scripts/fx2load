@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 
 # Copyright (C) 2009 Ubixum, Inc. 
 #
@@ -22,7 +22,7 @@ import optparse
 
 parser=optparse.OptionParser (usage="Usage: %prog [options] bixfile")
 parser.add_option( "-v", "--vid", type='int', default=0x04b4,help='Vendor ID (0x04b4)')
-parser.add_option( "-p", '--pid', type='int', default=0x0082,help='Product Id (0x0082)')
+parser.add_option( "-p", '--pid', type='int', default=0x8613,help='Product Id (0x8613)')
 
 opts,args=parser.parse_args()
 
