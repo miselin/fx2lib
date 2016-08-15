@@ -40,6 +40,9 @@ AS8051?=sdas8051
 VID?=0x04b4
 PID?=0x8613
 
+OBJCOPY?=objcopy
+FX2LOAD?=fx2load
+
 INCLUDES?=""
 DSCR_AREA?=-Wl"-b DSCR_AREA=0x3e00"
 INT2JT?=-Wl"-b INT2JT=0x3f00"
@@ -89,12 +92,12 @@ $(BUILDDIR)/$(BASENAME).ihx: $(BUILDDIR) $(SOURCES) $(A51_SOURCES) $(FX2LIBDIR)/
 
 
 $(BUILDDIR)/$(BASENAME).bix: $(BUILDDIR)/$(BASENAME).ihx
-	objcopy -I ihex -O binary $< $@
+	$(OBJCOPY) -I ihex -O binary $< $@
 $(BUILDDIR)/$(BASENAME).iic: $(BUILDDIR)/$(BASENAME).ihx
 	$(FX2LIBDIR)/utils/ihx2iic.py -v $(VID) -p $(PID) $< $@
 
 load: $(BUILDDIR)/$(BASENAME).bix
-	fx2load -v $(VID) -p $(PID) $(BUILDDIR)/$(BASENAME).bix
+	$(FX2LOAD) -v $(VID) -p $(PID) $(BUILDDIR)/$(BASENAME).bix
 
 clean:
 	rm -f $(foreach ext, a51 asm ihx lnk lk lst map mem rel rst rest sym adb cdb bix, $(BUILDDIR)/*.${ext})
