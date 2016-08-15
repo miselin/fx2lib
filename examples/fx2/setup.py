@@ -4,7 +4,8 @@ fx2_mod = Extension (
  '_fx2',
  sources=['cpp/fx2.cpp', 'cpp/fx2.i'],
  swig_opts=['-c++'],
- include_dirs = ['/usr/include/python2.5'],
+ include_dirs = ['/usr/include/python2.5', '/usr/local/include'],
+ library_dirs = ['/usr/local/lib'],
  libraries = ['usb-1.0']
 )
 
