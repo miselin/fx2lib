@@ -72,9 +72,10 @@ void main() {
  eeprom_write_local(LG_PROM, 0, IIC_SIZE, fx2_c0);
 
  
+ init_lights();
  while (1) {
     delay(1000);
-    if (on) {d5on();} else {d5off();}
+    if (on) {d1on();} else {d1off();}
     on = !on;    
  }
  

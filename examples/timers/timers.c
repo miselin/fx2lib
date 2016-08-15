@@ -21,24 +21,24 @@
 #include <fx2ints.h>
 #include <lights.h>
 
+volatile __bit d1;
 volatile __bit d2;
 volatile __bit d3;
-volatile __bit d4;
 volatile __bit d5;
 
 void timer0_isr() __interrupt TF0_ISR {
+ d1 = !d1;
+ if (d1) { d1on(); } else { d1off(); }
+}
+
+void timer1_isr() __interrupt TF1_ISR {
  d2 = !d2;
  if (d2) { d2on(); } else { d2off(); }
 }
 
-void timer1_isr() __interrupt TF1_ISR {
- d3 = !d3;
- if (d3) { d3on(); } else { d3off(); }
-}
-
 void timer2_isr() __interrupt TF2_ISR {
- d4 = !d4;
- if (d4) { d4on(); } else { d4off(); }
+ d3 = !d3;
+ if (d3) { d1on(); d2on(); } else { d1off(); d2off(); }
 
  CLEAR_TIMER2(); // This one is not done automatically!
 }
@@ -66,13 +66,7 @@ void main(void)
     TR1=1; // start t1 
     TR2=1; // start t2
 
-    // and blink d5
     while (TRUE) {
-        ++counter;
-        if (!counter) {
-            d5 = !d5;
-            if (d5) { d5off(); } else { d5on(); }
-        }
     }
 }
 

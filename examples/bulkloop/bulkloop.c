@@ -96,7 +96,7 @@ void main() {
  printf ( "Done initializing stuff\n" );
 
  
- d3off();
+ d1off();
  
  while(TRUE) {
  
@@ -204,13 +204,13 @@ void sudav_isr() __interrupt SUDAV_ISR {
   CLEAR_SUDAV();
 }
 
-__bit on5;
+__bit on2;
 __xdata WORD sofct=0;
 void sof_isr () __interrupt SOF_ISR __using 1 {
     ++sofct;
     if(sofct==8000) { // about 8000 sof interrupts per second at high speed
-        on5=!on5;
-        if (on5) {d5on();} else {d5off();}
+        on2=!on2;
+        if (on2) {d2on();} else {d2off();}
         sofct=0;
     }
     CLEAR_SOF();

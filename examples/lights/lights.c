@@ -21,17 +21,22 @@
 #include <lights.h>
 #include <delay.h>
 
-volatile __xdata BYTE* bytes[] = { &D2ON, &D3ON, &D4ON, &D5ON, &D2OFF, &D3OFF, &D4OFF, &D5OFF };
-
 void main(void)
 {
-    volatile BYTE tmp;
-	BYTE cur=0;
+    BYTE n = 0;
 
-    // loop endlessly
-    for(;;) {
-       tmp=*bytes[cur];
-       delay(50);
-       cur = cur == 7 ? 0 : cur+1;
+    init_lights();
+    for (;;) {
+        if (n == 0) {
+            d1on();
+        } else if (n == 1) {
+            d2on();
+        } else if (n == 2) {
+            d1off();
+        } else {
+            d2off();
+        }
+        delay(250);
+        n = (n + 1) % 4;
     }
 }

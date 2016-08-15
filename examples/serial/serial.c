@@ -70,7 +70,7 @@ void main(void)
 	TR1=1; // start timer 1
 	
 	
-	d5off(); // end init
+	d1off(); // end init
 	
 	while (1) {
 		char r=getchar();
