@@ -19,6 +19,25 @@ You can also build the documentation if you have doxygen installed.
 
 You can copy the fw directory to your own directory and customize it as needed.
 
+** Firmware on OSX
+
+You will need `sdcc`, which can be obtained via Homebrew (http://brew.sh):
+
+> brew install sdcc
+
+Then, you can simply run `make' as per above.
+
+fx2load is needed to load the firmware on OSX; see examples/fx2. This is a
+Python package and can be built with setuptools (a virtualenv is highly
+recommended):
+
+> cd examples/fx2
+> python setup.py install
+
+You may need to install libusb for this; this can be done via Homebrew:
+
+> brew install libusb
+
 ** More custom firmware
 
 To use routines included with this library in your own firmware,
