@@ -184,6 +184,8 @@ BYTE handle_get_configuration()
 
 BOOL handle_get_descriptor()
 {
+	return FALSE;
+	/*
         BYTE desc = SETUPDAT[3];
 	if (desc != DSCR_DEBUG_TYPE)
 		return FALSE;
@@ -191,6 +193,7 @@ BOOL handle_get_descriptor()
 	SUDPTRH = MSB((WORD)&debug_dscr);
 	SUDPTRL = LSB((WORD)&debug_dscr);
 	return TRUE;
+	*/
 }
 
 BOOL handle_set_configuration(BYTE cfg)
